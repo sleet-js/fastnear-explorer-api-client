@@ -1,7 +1,29 @@
 {
-  "name": "fastnear-explorer-api-client",
-  "module": "src/index.ts",
+  "name": "@sleet-js/fastnear-explorer-api-client",
+  "description": "⏩ easy to use client for fastnear explorer api",
+  "version": "0.0.1",
+  "homepage": "https://sleet-js.near.page",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "browser": "dist/index.js",
   "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sleet-js/fastnear-explorer-api-client.git"
+  },
+  "scripts": {
+    "build": "bun run tsc"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
