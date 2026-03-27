@@ -21,13 +21,12 @@ bun publish --access public
 
 fastnear
 <br/>
-https://github.com/fastnear/fastnear-api-server-rs
+https://github.com/fastnear/explorer-api
 <br/>
 https://github.com/fastnear/explorer-frontend
 
 Endpoints:
-- Mainnet: https://api.fastnear.com
-- Testnet: https://test.api.fastnear.com
+- https://explorer.main.fastnear.com/v0/
 
 ---
 
