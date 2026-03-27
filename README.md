@@ -18,6 +18,13 @@ bunx npm login
 bun publish --access public
 ```
 
+### USE
+
+```sh
+npm i @sleet-js/fastnear-explorer-api-client
+bun add @sleet-js/fastnear-explorer-api-client
+```
+
 ---
 
 fastnear
