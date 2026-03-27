@@ -1,6 +1,9 @@
 # fastnear-explorer-api-client
+⏩ easy to use client for fastnear explorer api
 
-To install dependencies:
+---
+
+### DEV
 
 ```bash
 bun install
@@ -13,4 +16,8 @@ bunx npm login
 bun publish --access public
 ```
 
+---
+
 This project was created using `bun init` in bun v1.3.11. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+
+copyright 2026 by sleet.near
