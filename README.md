@@ -1,6 +1,7 @@
 # fastnear-explorer-api-client
 ⏩ easy to use client for fastnear explorer api
 
+
 ---
 
 ### DEV
@@ -15,6 +16,18 @@ bun publish --dry-run
 bunx npm login
 bun publish --access public
 ```
+
+---
+
+fastnear
+<br/>
+https://github.com/fastnear/fastnear-api-server-rs
+<br/>
+https://github.com/fastnear/explorer-frontend
+
+Endpoints:
+- Mainnet: https://api.fastnear.com
+- Testnet: https://test.api.fastnear.com
 
 ---
 
