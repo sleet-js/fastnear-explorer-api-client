@@ -1,6 +1,6 @@
 // FastNear Explorer API Client
 // Reusable client library for FastNear Explorer API
-
+// ===========================================
 // Configuration
 export {
   ENDPOINTS,
@@ -9,10 +9,10 @@ export {
   getFastNearBaseUrl,
   type NetworkId,
 } from "./api/config";
-
+// ===========================================
 // API Client
 export { fetchApi, type ApiClientConfig } from "./api/client";
-
+// ===========================================
 // v0 API Endpoints
 export {
   getBlocks,
@@ -20,7 +20,7 @@ export {
   getTransactions,
   getAccount,
 } from "./api/endpoints";
-
+// ===========================================
 // v1 FastNear API
 export { getAccountFull } from "./api/fastnearApi";
 export type {
@@ -30,7 +30,7 @@ export type {
   AccountPool,
   AccountFullResponse,
 } from "./api/fastnearApi";
-
+// ===========================================
 // Types
 export type {
   BlockHeader,
@@ -47,3 +47,4 @@ export type {
   BlockFilters,
   AccountFilters,
 } from "./api/types";
+// ===========================================
