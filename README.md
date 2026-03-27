@@ -1,6 +1,7 @@
 # fastnear-explorer-api-client
 ⏩ easy to use client for fastnear explorer api
 
+🤖 I let ai generate the [GUIDE.md](GUIDE.md), and the example test bin's, for the most part we just copied the client form the offical frontend, and I let ai create custom config file.
 
 ---
 
@@ -21,12 +22,12 @@ bun publish --access public
 
 fastnear
 <br/>
+https://github.com/fastnear/fastnear-api-server-rs?tab=readme-ov-file
+<br/>
 https://github.com/fastnear/explorer-api
 <br/>
 https://github.com/fastnear/explorer-frontend
 
-Endpoints:
-- https://explorer.main.fastnear.com/v0/
 
 ---
 
