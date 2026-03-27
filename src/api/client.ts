@@ -1,12 +1,30 @@
-import { apiBaseUrl } from "../config";
+/**
+ * API client utility for making requests to FastNear Explorer API
+ */
 
-const BASE_URL = apiBaseUrl;
+export interface ApiClientConfig {
+  baseUrl?: string;
+}
 
+const DEFAULT_CONFIG: ApiClientConfig = {
+  baseUrl: undefined,
+};
+
+/**
+ * Fetch data from the FastNear Explorer API
+ * @param endpoint - API endpoint (e.g., "blocks", "account")
+ * @param body - Request body parameters
+ * @param config - Optional client configuration
+ * @returns Promise resolving to API response
+ * @throws Error if response is not ok
+ */
 export async function fetchApi<T>(
   endpoint: string,
-  body: Record<string, unknown> = {}
+  body: Record<string, unknown> = {},
+  config: ApiClientConfig = DEFAULT_CONFIG
 ): Promise<T> {
-  const res = await fetch(`${BASE_URL}/v0/${endpoint}`, {
+  const baseUrl = config.baseUrl || (await import("./config")).apiBaseUrl;
+  const res = await fetch(`${baseUrl}/v0/${endpoint}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -14,5 +32,5 @@ export async function fetchApi<T>(
   if (!res.ok) {
     throw new Error(`API error ${res.status}: ${res.statusText}`);
   }
-  return res.json();
+  return res.json() as Promise<T>;
 }

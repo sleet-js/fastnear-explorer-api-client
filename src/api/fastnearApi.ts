@@ -1,9 +1,5 @@
-import { networkId } from "../config";
-
-const BASE_URL =
-  networkId === "testnet"
-    ? "https://test.api.fastnear.com"
-    : "https://api.fastnear.com";
+import type { NetworkId } from "./config";
+import { getFastNearBaseUrl } from "./config";
 
 export interface AccountFullState {
   balance: string;
@@ -37,14 +33,16 @@ export interface AccountFullResponse {
 
 export async function getAccountFull(
   accountId: string,
+  networkId: NetworkId = "mainnet",
   signal?: AbortSignal
 ): Promise<AccountFullResponse | null> {
-  const res = await fetch(`${BASE_URL}/v1/account/${accountId}/full`, {
+  const baseUrl = getFastNearBaseUrl(networkId);
+  const res = await fetch(`${baseUrl}/v1/account/${accountId}/full`, {
     signal,
   });
   if (res.status === 404) return null;
   if (!res.ok) {
     throw new Error(`API error ${res.status}: ${res.statusText}`);
   }
-  return res.json();
+  return res.json() as Promise<AccountFullResponse>;
 }
