@@ -22,7 +22,7 @@ bun publish --access public
 
 fastnear
 <br/>
-https://github.com/fastnear/fastnear-api-server-rs?tab=readme-ov-file
+https://github.com/fastnear/fastnear-api-server-rs
 <br/>
 https://github.com/fastnear/explorer-api
 <br/>
