@@ -16,6 +16,7 @@
 // ========================================
 
 import { base58_from_base64 } from "./base58_from_base64";
+import { decode_args } from "./decode_args";
 import { get_action_payload } from "./get_action_payload";
 import { get_action_type } from "./get_action_type";
 import { read_access_key_permission } from "./read_access_key_permission";
@@ -45,6 +46,8 @@ export function parse_action(action: ACTION): PARSED_ACTION {
   }
   if (typeof payload["args"] === "string") {
     parsed.args = payload["args"];
+    // the decoded form, so a ui does not have to decode it again.
+    parsed.args_decoded = decode_args(payload["args"]);
   }
   if (typeof payload["gas"] === "number") {
     parsed.gas = payload["gas"];

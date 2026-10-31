@@ -323,11 +323,20 @@ see `src/parse/plugins/README.md` for the whole story.
 ## formatting
 
 ```ts
-import { format_near, format_near_with_unit, format_gas, time_ago } from "@sleet-js/fastnear-explorer-api-client";
+import {
+  format_near,
+  format_near_with_unit,
+  format_gas,
+  format_token_amount,
+  format_storage_bytes,
+  time_ago,
+} from "@sleet-js/fastnear-explorer-api-client";
 
 format_near("1000000000000000000000000");       // "1"
 format_near_with_unit("1000000000000000000000000"); // "1 NEAR"
 format_gas(3780000000000);                      // "3.78 Tgas"
+format_token_amount("3029112427489378333", 18); // "3.02911"
+format_storage_bytes(2263199);                  // "2.2 MB"
 time_ago("1793289264112006841");                // "2d ago"
 ```
 

@@ -173,6 +173,17 @@ action, one per transfer.
 bun bin/parse_row.ts JCCCEDDB5gwKeUi6otSVv6ajM4nt9gn4AtWVfqNB7DTg
 ```
 
+### parse_args
+
+show a function call's decoded arguments — the json, the raw text or
+the hex.
+
+```sh
+bun bin/parse_args.ts JCCCEDDB5gwKeUi6otSVv6ajM4nt9gn4AtWVfqNB7DTg
+bun bin/parse_args.ts JCCCEDDB5gwKeUi6otSVv6ajM4nt9gn4AtWVfqNB7DTg --hex
+bun bin/parse_args.ts JCCCEDDB5gwKeUi6otSVv6ajM4nt9gn4AtWVfqNB7DTg --action 1
+```
+
 ### parse_verify
 
 the verification bin. pulls a live corpus, parses every transaction

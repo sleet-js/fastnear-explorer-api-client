@@ -437,6 +437,57 @@ for (const action of parsed.actions) {
 
 `action.raw` holds the original action, untouched.
 
+### the arguments
+
+a function call carries its arguments as a base64 string. the parsed
+action has them decoded as well:
+
+```typescript
+const action = parsed.actions[0];
+
+if (action.args_decoded !== undefined) {
+  console.log(action.args_decoded.text);   // the utf-8 text
+  console.log(action.args_decoded.json);   // the parsed json, when it is json
+  console.log(action.args_decoded.bytes);  // the raw bytes
+}
+```
+
+to decide which view to show:
+
+```typescript
+import {
+  args_view_modes,
+  default_args_view_mode,
+  bytes_to_hex,
+} from "@sleet-js/fastnear-explorer-api-client";
+
+const decoded = action.args_decoded!;
+
+console.log(args_view_modes(decoded.json !== null));
+// -> ["json", "raw", "hex", "base64"] or ["raw", "hex", "base64"]
+
+console.log(default_args_view_mode(decoded.json !== null, decoded.is_printable));
+// -> "json" | "raw" | "hex"
+
+console.log(bytes_to_hex(decoded.bytes));
+// -> "7b 22 72 65 63 65 69 76 65 72 ..."
+```
+
+the standalone helpers work on their own too:
+
+```typescript
+import {
+  decode_args,
+  try_parse_json,
+  is_printable_text,
+} from "@sleet-js/fastnear-explorer-api-client";
+
+const decoded = decode_args(action.args);
+```
+
+a malformed or empty argument gives an empty result rather than
+throwing.
+
 ### the transfers
 
 ```typescript
@@ -577,6 +628,26 @@ const parsed = parse_transaction(tx, { registry });
 a registry REPLACES the defaults — include `DEFAULT_PLUGINS` if you
 still want them.
 
+### the account overview
+
+the account overview is a set of small helpers:
+
+```typescript
+import {
+  format_storage_bytes,
+  is_non_zero_balance,
+} from "@sleet-js/fastnear-explorer-api-client";
+
+console.log(format_storage_bytes(2263199));  // "2.2 MB"
+
+console.log(is_non_zero_balance("0"));       // false
+console.log(is_non_zero_balance(""));        // false
+console.log(is_non_zero_balance("500"));     // true
+```
+
+`is_non_zero_balance` filters the tokens an account has touched but
+does not hold — most of them.
+
 ---
 
 ## formatting
@@ -587,6 +658,7 @@ import {
   format_near_with_unit,
   format_gas,
   format_token_amount,
+  format_storage_bytes,
   time_ago,
   parse_public_key,
   truncate_public_key_data,
@@ -596,6 +668,7 @@ format_near("1000000000000000000000000");          // "1"
 format_near_with_unit("1000000000000000000000000"); // "1 NEAR"
 format_gas(3780000000000);                          // "3.78 Tgas"
 format_token_amount("3029112427489378333", 18);     // "3.02911"
+format_storage_bytes(2263199);                     // "2.2 MB"
 time_ago("1793289264112006841");                   // "2d ago"
 
 const key = parse_public_key("ed25519:79NxjQ...");
@@ -684,9 +757,29 @@ try {
 }
 ```
 
----
+```typescript
+import {
+  format_near,
+  format_near_with_unit,
+  format_gas,
+  format_token_amount,
+  format_storage_bytes,
+  time_ago,
+  parse_public_key,
+  truncate_public_key_data,
+} from "@sleet-js/fastnear-explorer-api-client";
 
-## bins
+format_near("1000000000000000000000000");          // "1"
+format_near_with_unit("1000000000000000000000000"); // "1 NEAR"
+format_gas(3780000000000);                          // "3.78 Tgas"
+format_token_amount("3029112427489378333", 18);     // "3.02911"
+format_storage_bytes(2263199);                     // "2.2 MB"
+time_ago("1793289264112006841");                   // "2d ago"
+
+const key = parse_public_key("ed25519:79NxjQ...");
+key.curve;            // "ed25519"
+key.is_post_quantum;  // false
+```
 
 there are no test files in this package. verification runs through the
 bins — see `bin/README.md`.

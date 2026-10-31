@@ -85,6 +85,16 @@ export { collect_events } from "./parse/collect_events";
 export { normalize_owner } from "./parse/normalize_owner";
 export { is_event_data_object } from "./parse/is_event_data_object";
 
+// --- the decoded arguments -----------------------------------------
+export { decode_args } from "./parse/decode_args";
+export { try_parse_json } from "./parse/try_parse_json";
+export { is_printable_text } from "./parse/is_printable_text";
+export { bytes_to_hex } from "./parse/bytes_to_hex";
+export { args_view_modes } from "./parse/args_view_modes";
+export { default_args_view_mode } from "./parse/default_args_view_mode";
+export { format_storage_bytes } from "./parse/format_storage_bytes";
+export { is_non_zero_balance } from "./parse/is_non_zero_balance";
+
 // --- the parser registry ------------------------------------------
 export { DEFAULT_PARSER_REGISTRY } from "./parse/registry/DEFAULT_PARSER_REGISTRY";
 export { create_parser_registry } from "./parse/registry/create_parser_registry";
@@ -163,6 +173,8 @@ export type { CUSTOM_TRANSFER } from "./types/shared/CUSTOM_TRANSFER";
 export type { TOKEN_TYPE } from "./types/shared/TOKEN_TYPE";
 export type { EVENT_JSON } from "./types/shared/EVENT_JSON";
 export type { EVENT_DATA } from "./types/shared/EVENT_DATA";
+export type { DECODED_ARGS } from "./types/shared/DECODED_ARGS";
+export type { ARGS_VIEW_MODE } from "./types/shared/ARGS_VIEW_MODE";
 export type { DELEGATE_CONTEXT } from "./types/shared/DELEGATE_CONTEXT";
 export type { COLLECTED_EVENT } from "./types/shared/COLLECTED_EVENT";
 export type { API_RPC_RESPONSE } from "./types/v1/API_RPC_RESPONSE";

@@ -10,12 +10,15 @@
 // ========================================
 
 import type { RAW_ACTION } from "../tx/RAW_ACTION";
+import type { DECODED_ARGS } from "./DECODED_ARGS";
 
 export interface PARSED_ACTION {
   type: string;
   method_name?: string;
   deposit?: string;
   args?: string;
+  /** the decoded form of `args`, ready to render. */
+  args_decoded?: DECODED_ARGS;
   gas?: number;
   public_key?: string;
   access_key_permission?: string;
