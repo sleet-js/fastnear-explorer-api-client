@@ -220,6 +220,22 @@ published but never committed cannot be published twice.
 
 ---
 
+## node compatibility
+
+the package ships as native esm and works under node, bun and the
+browser.
+
+typescript emits extensionless relative imports, which bun resolves
+but node does NOT — node's esm resolver needs the full path. the
+build adds the `.js` extension to the emitted imports so the
+published package imports cleanly under node.
+
+`bun bin/check_dist.ts` checks that, the entry points, and that
+nothing that should not ship is in the tarball. the release workflow
+runs it before publishing.
+
+---
+
 ## the call log
 
 every call prints a framed block — the same format the middleman
