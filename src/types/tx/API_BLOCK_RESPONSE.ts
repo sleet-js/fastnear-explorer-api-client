@@ -6,9 +6,9 @@
 // `with_receipts` was not asked for. it is just empty then.
 // ========================================
 
-import type { BLOCK_HEADER } from "./BLOCK_HEADER.js";
-import type { BLOCK_TX } from "./BLOCK_TX.js";
-import type { RECEIPT_ROW } from "./RECEIPT_ROW.js";
+import type { BLOCK_HEADER } from "./BLOCK_HEADER";
+import type { BLOCK_TX } from "./BLOCK_TX";
+import type { RECEIPT_ROW } from "./RECEIPT_ROW";
 
 export interface API_BLOCK_RESPONSE {
   block: BLOCK_HEADER;

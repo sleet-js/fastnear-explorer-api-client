@@ -19,7 +19,7 @@
 // show the right account.
 // ========================================
 
-import type { ACTION } from "../tx/ACTION.js";
+import type { ACTION } from "../tx/ACTION";
 
 export interface DELEGATE_CONTEXT {
   signer_id: string;

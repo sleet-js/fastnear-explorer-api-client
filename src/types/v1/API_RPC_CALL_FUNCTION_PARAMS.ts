@@ -3,7 +3,7 @@
 // what api_rpc_call_function takes.
 // ========================================
 
-import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG.js";
+import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG";
 
 export interface API_RPC_CALL_FUNCTION_PARAMS {
   contract_id: string;

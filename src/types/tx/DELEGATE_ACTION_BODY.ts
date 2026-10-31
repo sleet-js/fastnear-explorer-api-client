@@ -7,7 +7,7 @@
 // {...} }` — NOT the flat `{ type: "FunctionCall" }` form.
 // ========================================
 
-import type { ACTION } from "./ACTION.js";
+import type { ACTION } from "./ACTION";
 
 export interface DELEGATE_ACTION_BODY {
   sender_id: string;

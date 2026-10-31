@@ -3,7 +3,7 @@
 // what the status and health lookups take.
 // ========================================
 
-import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG.js";
+import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG";
 
 export interface API_STATUS_PARAMS {
   config?: API_CLIENT_CONFIG;

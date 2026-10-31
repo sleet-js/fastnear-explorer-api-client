@@ -3,7 +3,7 @@
 // the blocks a POST /v0/blocks call answered with.
 // ========================================
 
-import type { BLOCK_HEADER } from "./BLOCK_HEADER.js";
+import type { BLOCK_HEADER } from "./BLOCK_HEADER";
 
 export interface API_BLOCKS_RESPONSE {
   blocks: BLOCK_HEADER[];

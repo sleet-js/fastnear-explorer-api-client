@@ -8,10 +8,10 @@
 // are shaped like receipts but carry no execution outcome.
 // ========================================
 
-import type { EXECUTION_OUTCOME } from "./EXECUTION_OUTCOME.js";
-import type { RAW_TRANSACTION } from "./RAW_TRANSACTION.js";
-import type { RECEIPT } from "./RECEIPT.js";
-import type { RECEIPT_WITH_OUTCOME } from "./RECEIPT_WITH_OUTCOME.js";
+import type { EXECUTION_OUTCOME } from "./EXECUTION_OUTCOME";
+import type { RAW_TRANSACTION } from "./RAW_TRANSACTION";
+import type { RECEIPT } from "./RECEIPT";
+import type { RECEIPT_WITH_OUTCOME } from "./RECEIPT_WITH_OUTCOME";
 
 export interface TRANSACTION_DETAIL {
   transaction: RAW_TRANSACTION;

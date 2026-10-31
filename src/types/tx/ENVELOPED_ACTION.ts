@@ -18,15 +18,15 @@
 // rather than leaving them as an open record.
 // ========================================
 
-import type { ADD_KEY_ACTION } from "./ADD_KEY_ACTION.js";
-import type { DELEGATE_ACTION } from "./DELEGATE_ACTION.js";
-import type { DELETE_ACCOUNT_ACTION } from "./DELETE_ACCOUNT_ACTION.js";
-import type { DELETE_KEY_ACTION } from "./DELETE_KEY_ACTION.js";
-import type { DEPLOY_CONTRACT_ACTION } from "./DEPLOY_CONTRACT_ACTION.js";
-import type { FUNCTION_CALL_ACTION } from "./FUNCTION_CALL_ACTION.js";
-import type { STAKE_ACTION } from "./STAKE_ACTION.js";
-import type { TRANSFER_ACTION } from "./TRANSFER_ACTION.js";
-import type { USE_GLOBAL_CONTRACT_ACTION } from "./USE_GLOBAL_CONTRACT_ACTION.js";
+import type { ADD_KEY_ACTION } from "./ADD_KEY_ACTION";
+import type { DELEGATE_ACTION } from "./DELEGATE_ACTION";
+import type { DELETE_ACCOUNT_ACTION } from "./DELETE_ACCOUNT_ACTION";
+import type { DELETE_KEY_ACTION } from "./DELETE_KEY_ACTION";
+import type { DEPLOY_CONTRACT_ACTION } from "./DEPLOY_CONTRACT_ACTION";
+import type { FUNCTION_CALL_ACTION } from "./FUNCTION_CALL_ACTION";
+import type { STAKE_ACTION } from "./STAKE_ACTION";
+import type { TRANSFER_ACTION } from "./TRANSFER_ACTION";
+import type { USE_GLOBAL_CONTRACT_ACTION } from "./USE_GLOBAL_CONTRACT_ACTION";
 
 export type ENVELOPED_ACTION =
   | { FunctionCall: FUNCTION_CALL_ACTION }

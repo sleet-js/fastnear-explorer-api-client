@@ -9,7 +9,7 @@
 // know — the raw action is still in `raw` so nothing is lost.
 // ========================================
 
-import type { RAW_ACTION } from "../tx/RAW_ACTION.js";
+import type { RAW_ACTION } from "../tx/RAW_ACTION";
 
 export interface PARSED_ACTION {
   type: string;

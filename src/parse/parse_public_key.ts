@@ -13,7 +13,7 @@
 // and a new one must not break the parse.
 // ========================================
 
-import type { PARSED_PUBLIC_KEY } from "../types/shared/PARSED_PUBLIC_KEY.js";
+import type { PARSED_PUBLIC_KEY } from "../types/shared/PARSED_PUBLIC_KEY";
 
 export function parse_public_key(public_key: string): PARSED_PUBLIC_KEY {
   const index = public_key.indexOf(":");

@@ -9,9 +9,9 @@
 // the is_* filters narrow the history — see ACCOUNT_FILTERS.
 // ========================================
 
-import { api_post } from "../../stuff/API_POST.js";
-import type { API_ACCOUNT_PARAMS } from "../../types/tx/API_ACCOUNT_PARAMS.js";
-import type { API_ACCOUNT_RESPONSE } from "../../types/tx/API_ACCOUNT_RESPONSE.js";
+import { api_post } from "../../stuff/API_POST";
+import type { API_ACCOUNT_PARAMS } from "../../types/tx/API_ACCOUNT_PARAMS";
+import type { API_ACCOUNT_RESPONSE } from "../../types/tx/API_ACCOUNT_RESPONSE";
 
 export async function api_account(
   params: API_ACCOUNT_PARAMS,

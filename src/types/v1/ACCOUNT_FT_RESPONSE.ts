@@ -3,7 +3,7 @@
 // what GET /v1/account/{id}/ft answered with.
 // ========================================
 
-import type { ACCOUNT_FT_TOKEN } from "./ACCOUNT_FT_TOKEN.js";
+import type { ACCOUNT_FT_TOKEN } from "./ACCOUNT_FT_TOKEN";
 
 export interface ACCOUNT_FT_RESPONSE {
   account_id: string;

@@ -9,9 +9,9 @@
 // null rather than an exception.
 // ========================================
 
-import { api_get_path } from "../../stuff/API_GET_PATH.js";
-import type { ACCOUNT_FULL } from "../../types/v1/ACCOUNT_FULL.js";
-import type { API_ACCOUNT_FULL_PARAMS } from "../../types/v1/API_ACCOUNT_FULL_PARAMS.js";
+import { api_get_path } from "../../stuff/API_GET_PATH";
+import type { ACCOUNT_FULL } from "../../types/v1/ACCOUNT_FULL";
+import type { API_ACCOUNT_FULL_PARAMS } from "../../types/v1/API_ACCOUNT_FULL_PARAMS";
 
 export async function api_account_full(
   params: API_ACCOUNT_FULL_PARAMS,

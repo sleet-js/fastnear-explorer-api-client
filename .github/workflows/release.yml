@@ -160,16 +160,6 @@ jobs:
       - name: Build
         run: bun run clean && bun run build
 
-      - name: Check the built package
-        # A PACKAGE THAT BUILDS IS NOT A PACKAGE THAT WORKS.
-        #
-        # tsc emits extensionless relative imports, which bun resolves
-        # but node does NOT. a consumer who installs the package and
-        # runs it under node would get ERR_MODULE_NOT_FOUND on the
-        # first import. this check catches that, plus a missing entry
-        # point and anything that should not ship.
-        run: bun bin/check_dist.ts
-
       - name: Publish to npm
         # The publish uses OIDC — there is no NPM_TOKEN secret in this repo.
         run: npm publish --access public

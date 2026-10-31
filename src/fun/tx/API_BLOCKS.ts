@@ -9,9 +9,9 @@
 // the first block ever. pass `desc: true` for the newest.
 // ========================================
 
-import { api_post } from "../../stuff/API_POST.js";
-import type { API_BLOCKS_PARAMS } from "../../types/tx/API_BLOCKS_PARAMS.js";
-import type { API_BLOCKS_RESPONSE } from "../../types/tx/API_BLOCKS_RESPONSE.js";
+import { api_post } from "../../stuff/API_POST";
+import type { API_BLOCKS_PARAMS } from "../../types/tx/API_BLOCKS_PARAMS";
+import type { API_BLOCKS_RESPONSE } from "../../types/tx/API_BLOCKS_RESPONSE";
 
 export async function api_blocks(
   params: API_BLOCKS_PARAMS = {},

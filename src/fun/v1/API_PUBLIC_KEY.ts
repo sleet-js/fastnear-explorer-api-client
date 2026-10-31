@@ -16,9 +16,9 @@
 // that is not an error.
 // ========================================
 
-import { api_get_path_required } from "../../stuff/API_GET_PATH.js";
-import type { API_PUBLIC_KEY_PARAMS } from "../../types/v1/API_PUBLIC_KEY_PARAMS.js";
-import type { PUBLIC_KEY_LOOKUP_RESPONSE } from "../../types/v1/PUBLIC_KEY_LOOKUP_RESPONSE.js";
+import { api_get_path_required } from "../../stuff/API_GET_PATH";
+import type { API_PUBLIC_KEY_PARAMS } from "../../types/v1/API_PUBLIC_KEY_PARAMS";
+import type { PUBLIC_KEY_LOOKUP_RESPONSE } from "../../types/v1/PUBLIC_KEY_LOOKUP_RESPONSE";
 
 export interface API_PUBLIC_KEY_PARAMS_EXTENDED extends API_PUBLIC_KEY_PARAMS {
   include_all?: boolean;

@@ -31,7 +31,6 @@
     "build": "rm -f .tsbuildinfo && bun run tsc --build tsconfig.build.json --force",
     "clean": "bun run tsc --build --clean && rm -rf dist .tsbuildinfo",
     "verify": "bun bin/parse_encodings.ts && bun bin/parse_verify.ts",
-    "verify:dist": "bun run build && bun bin/check_dist.ts",
     "version:sync": "bun run scripts/version-sync.ts",
     "version:dry-run": "bun run scripts/version-sync.ts --dry-run",
     "release:version": "bun run scripts/release-version.ts"

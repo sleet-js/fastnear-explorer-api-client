@@ -3,8 +3,8 @@
 // what POST /v0/account takes.
 // ========================================
 
-import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG.js";
-import type { ACCOUNT_FILTERS } from "./ACCOUNT_FILTERS.js";
+import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG";
+import type { ACCOUNT_FILTERS } from "./ACCOUNT_FILTERS";
 
 export interface API_ACCOUNT_PARAMS extends ACCOUNT_FILTERS {
   account_id: string;

@@ -13,7 +13,7 @@
 // resolve_success walks that chain.
 // ========================================
 
-import type { ACTION_ERROR } from "./ACTION_ERROR.js";
+import type { ACTION_ERROR } from "./ACTION_ERROR";
 
 export type EXECUTION_STATUS =
   | { SuccessValue: string }

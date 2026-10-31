@@ -9,9 +9,9 @@
 // not set — it is always present, and may be empty.
 // ========================================
 
-import { api_post } from "../../stuff/API_POST.js";
-import type { API_BLOCK_PARAMS } from "../../types/tx/API_BLOCK_PARAMS.js";
-import type { API_BLOCK_RESPONSE } from "../../types/tx/API_BLOCK_RESPONSE.js";
+import { api_post } from "../../stuff/API_POST";
+import type { API_BLOCK_PARAMS } from "../../types/tx/API_BLOCK_PARAMS";
+import type { API_BLOCK_RESPONSE } from "../../types/tx/API_BLOCK_RESPONSE";
 
 export async function api_block(
   params: API_BLOCK_PARAMS,

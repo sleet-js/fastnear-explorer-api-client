@@ -16,12 +16,12 @@
 // `signal` aborts the request.
 // ========================================
 
-import { create_api_error } from "./API_ERROR.js";
-import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG.js";
-import { api_base_url } from "./API_BASE_URL.js";
-import { api_log } from "./API_LOG.js";
-import { api_retry } from "./API_RETRY.js";
-import { TX_ENDPOINT_PATHS, type TX_ENDPOINT_KEY } from "./TX_ENDPOINT_PATHS.js";
+import { create_api_error } from "./API_ERROR";
+import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG";
+import { api_base_url } from "./API_BASE_URL";
+import { api_log } from "./API_LOG";
+import { api_retry } from "./API_RETRY";
+import { TX_ENDPOINT_PATHS, type TX_ENDPOINT_KEY } from "./TX_ENDPOINT_PATHS";
 
 export interface API_POST_PARAMS {
   endpoint: TX_ENDPOINT_KEY;

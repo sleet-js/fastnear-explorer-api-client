@@ -6,7 +6,7 @@
 // is the last page.
 // ========================================
 
-import type { ACCOUNT_TX } from "./ACCOUNT_TX.js";
+import type { ACCOUNT_TX } from "./ACCOUNT_TX";
 
 export interface API_ACCOUNT_RESPONSE {
   account_txs: ACCOUNT_TX[];

@@ -14,12 +14,12 @@
 // `quiet: true` to turn it off.
 // ========================================
 
-import { create_api_error } from "./API_ERROR.js";
-import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG.js";
-import { api_base_url } from "./API_BASE_URL.js";
-import { api_log } from "./API_LOG.js";
-import { api_retry } from "./API_RETRY.js";
-import { V1_ENDPOINT_PATHS, type V1_ENDPOINT_KEY } from "./V1_ENDPOINT_PATHS.js";
+import { create_api_error } from "./API_ERROR";
+import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG";
+import { api_base_url } from "./API_BASE_URL";
+import { api_log } from "./API_LOG";
+import { api_retry } from "./API_RETRY";
+import { V1_ENDPOINT_PATHS, type V1_ENDPOINT_KEY } from "./V1_ENDPOINT_PATHS";
 
 export interface API_GET_PATH_PARAMS {
   endpoint: V1_ENDPOINT_KEY;

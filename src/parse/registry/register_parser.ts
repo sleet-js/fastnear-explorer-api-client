@@ -11,9 +11,9 @@
 // puts it ahead of every built-in.
 // ========================================
 
-import { create_parser_registry } from "./create_parser_registry.js";
-import type { PARSER_REGISTRY } from "../../types/shared/PARSER_REGISTRY.js";
-import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER.js";
+import { create_parser_registry } from "./create_parser_registry";
+import type { PARSER_REGISTRY } from "../../types/shared/PARSER_REGISTRY";
+import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER";
 
 export function register_parser(
   registry: PARSER_REGISTRY,

@@ -220,43 +220,6 @@ published but never committed cannot be published twice.
 
 ---
 
-## node compatibility
-
-the package ships as native esm and works under node, bun and the
-browser.
-
-**the relative imports in `src/` carry a `.js` extension** — even
-though the files are `.ts`:
-
-```ts
-import { ENDPOINTS } from "./stuff/ENDPOINTS.js";
-```
-
-this is not a mistake and not a workaround. the tsconfig uses
-`moduleResolution: "bundler"`, which tells typescript "a bundler
-resolves this at runtime" — so **tsc never rewrites import paths**.
-without the extension it emits
-
-```js
-import { ENDPOINTS } from "./stuff/ENDPOINTS";
-```
-
-bun resolves that. node does NOT — node's esm resolver needs the
-full path with the extension. so a consumer who installs the package
-and runs it under node gets `ERR_MODULE_NOT_FOUND` on the very first
-import.
-
-writing the extension in the source fixes it with no build step:
-typescript passes the specifier through untouched, the emitted js
-keeps the `.js`, and the `.d.ts` files are unaffected.
-
-`bun bin/check_dist.ts` checks that every relative import carries the
-extension, that the built js actually imports under plain node, that
-the entry points exist, and that nothing that should not ship is in
-the tarball. the release workflow runs it before publishing.
-
----
-
 ## the call log
 
 every call prints a framed block — the same format the middleman

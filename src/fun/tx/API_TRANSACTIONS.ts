@@ -9,9 +9,9 @@
 // receipts, outcomes — everything the parser needs.
 // ========================================
 
-import { api_post } from "../../stuff/API_POST.js";
-import type { API_TRANSACTIONS_PARAMS } from "../../types/tx/API_TRANSACTIONS_PARAMS.js";
-import type { API_TRANSACTIONS_RESPONSE } from "../../types/tx/API_TRANSACTIONS_RESPONSE.js";
+import { api_post } from "../../stuff/API_POST";
+import type { API_TRANSACTIONS_PARAMS } from "../../types/tx/API_TRANSACTIONS_PARAMS";
+import type { API_TRANSACTIONS_RESPONSE } from "../../types/tx/API_TRANSACTIONS_RESPONSE";
 
 export const TRANSACTIONS_BATCH_SIZE = 20;
 

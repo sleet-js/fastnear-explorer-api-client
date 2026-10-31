@@ -16,9 +16,9 @@
 // with a depth cap so a malformed chain cannot loop forever.
 // ========================================
 
-import type { EXECUTION_STATUS } from "../types/tx/EXECUTION_STATUS.js";
-import type { RECEIPT_WITH_OUTCOME } from "../types/tx/RECEIPT_WITH_OUTCOME.js";
-import type { TRANSACTION_DETAIL } from "../types/tx/TRANSACTION_DETAIL.js";
+import type { EXECUTION_STATUS } from "../types/tx/EXECUTION_STATUS";
+import type { RECEIPT_WITH_OUTCOME } from "../types/tx/RECEIPT_WITH_OUTCOME";
+import type { TRANSACTION_DETAIL } from "../types/tx/TRANSACTION_DETAIL";
 
 const MAX_CHAIN_DEPTH = 32;
 

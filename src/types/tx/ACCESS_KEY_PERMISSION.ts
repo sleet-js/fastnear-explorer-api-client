@@ -6,7 +6,7 @@
 // function-call restriction.
 // ========================================
 
-import type { FUNCTION_CALL_PERMISSION } from "./FUNCTION_CALL_PERMISSION.js";
+import type { FUNCTION_CALL_PERMISSION } from "./FUNCTION_CALL_PERMISSION";
 
 export type ACCESS_KEY_PERMISSION = "FullAccess" | FUNCTION_CALL_PERMISSION;
 // ========================================

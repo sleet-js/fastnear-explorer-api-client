@@ -10,11 +10,11 @@
 // deposit of "0" is not a transfer, so it is skipped.
 // ========================================
 
-import { get_action_payload } from "../get_action_payload.js";
-import { get_action_type } from "../get_action_type.js";
-import type { PARSER_CONTEXT } from "../../types/shared/PARSER_CONTEXT.js";
-import type { TRANSFER_INFO } from "../../types/shared/TRANSFER_INFO.js";
-import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER.js";
+import { get_action_payload } from "../get_action_payload";
+import { get_action_type } from "../get_action_type";
+import type { PARSER_CONTEXT } from "../../types/shared/PARSER_CONTEXT";
+import type { TRANSFER_INFO } from "../../types/shared/TRANSFER_INFO";
+import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER";
 
 export const plugin_near_transfer: TRANSFER_PARSER = {
   id: "builtin.near-transfer",

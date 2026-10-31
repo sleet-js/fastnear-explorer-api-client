@@ -9,7 +9,7 @@
 // returns null for an action with no readable name.
 // ========================================
 
-import type { ACTION } from "../types/tx/ACTION.js";
+import type { ACTION } from "../types/tx/ACTION";
 
 export function get_action_type(action: ACTION): string | null {
   if (typeof action === "string") return action;

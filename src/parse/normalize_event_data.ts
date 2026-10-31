@@ -13,8 +13,8 @@
 // an event with no data gives an empty list.
 // ========================================
 
-import type { EVENT_DATA } from "../types/shared/EVENT_DATA.js";
-import type { EVENT_JSON } from "../types/shared/EVENT_JSON.js";
+import type { EVENT_DATA } from "../types/shared/EVENT_DATA";
+import type { EVENT_JSON } from "../types/shared/EVENT_JSON";
 
 export function normalize_event_data(event: EVENT_JSON): EVENT_DATA[] {
   const data = event.data;

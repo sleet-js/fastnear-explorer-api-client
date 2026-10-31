@@ -19,10 +19,10 @@
 // show the right account.
 // ========================================
 
-import { get_delegate_body } from "./get_delegate_body.js";
-import type { ACTION } from "../types/tx/ACTION.js";
-import type { DELEGATE_CONTEXT } from "../types/shared/DELEGATE_CONTEXT.js";
-import type { RAW_TRANSACTION } from "../types/tx/RAW_TRANSACTION.js";
+import { get_delegate_body } from "./get_delegate_body";
+import type { ACTION } from "../types/tx/ACTION";
+import type { DELEGATE_CONTEXT } from "../types/shared/DELEGATE_CONTEXT";
+import type { RAW_TRANSACTION } from "../types/tx/RAW_TRANSACTION";
 
 export function resolve_delegate_context(
   transaction: RAW_TRANSACTION,

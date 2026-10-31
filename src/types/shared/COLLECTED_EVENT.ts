@@ -8,7 +8,7 @@
 // `receipt_id` says which receipt the event came from.
 // ========================================
 
-import type { EVENT_JSON } from "./EVENT_JSON.js";
+import type { EVENT_JSON } from "./EVENT_JSON";
 
 export interface COLLECTED_EVENT {
   event: EVENT_JSON;

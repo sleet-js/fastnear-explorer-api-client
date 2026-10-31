@@ -43,8 +43,8 @@
 // the `typeof` check comes first because a string is not an object.
 // ========================================
 
-import type { ENVELOPED_ACTION } from "./ENVELOPED_ACTION.js";
-import type { UNIT_ACTION } from "./UNIT_ACTION.js";
+import type { ENVELOPED_ACTION } from "./ENVELOPED_ACTION";
+import type { UNIT_ACTION } from "./UNIT_ACTION";
 
 export type ACTION = UNIT_ACTION | ENVELOPED_ACTION;
 // ========================================

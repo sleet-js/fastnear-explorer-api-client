@@ -7,9 +7,9 @@
 // if the protocol adds another wrapping action.
 // ========================================
 
-import { get_action_payload } from "./get_action_payload.js";
-import { get_action_type } from "./get_action_type.js";
-import type { ACTION } from "../types/tx/ACTION.js";
+import { get_action_payload } from "./get_action_payload";
+import { get_action_type } from "./get_action_type";
+import type { ACTION } from "../types/tx/ACTION";
 
 export function is_delegate_action(action: ACTION): boolean {
   if (get_action_type(action) !== "Delegate") return false;

@@ -9,10 +9,10 @@
 // actions (`{ "FunctionCall": {...} }`), not a flat form.
 // ========================================
 
-import { get_action_payload } from "./get_action_payload.js";
-import { is_delegate_action } from "./is_delegate_action.js";
-import type { ACTION } from "../types/tx/ACTION.js";
-import type { DELEGATE_ACTION_BODY } from "../types/tx/DELEGATE_ACTION_BODY.js";
+import { get_action_payload } from "./get_action_payload";
+import { is_delegate_action } from "./is_delegate_action";
+import type { ACTION } from "../types/tx/ACTION";
+import type { DELEGATE_ACTION_BODY } from "../types/tx/DELEGATE_ACTION_BODY";
 
 export function get_delegate_body(action: ACTION): DELEGATE_ACTION_BODY | null {
   if (!is_delegate_action(action)) return null;

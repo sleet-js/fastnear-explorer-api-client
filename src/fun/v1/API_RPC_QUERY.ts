@@ -21,12 +21,12 @@
 // error as `status`, so the retry helper can act on it.
 // ========================================
 
-import { api_base_url } from "../../stuff/API_BASE_URL.js";
-import { create_api_error } from "../../stuff/API_ERROR.js";
-import { api_log } from "../../stuff/API_LOG.js";
-import { api_retry } from "../../stuff/API_RETRY.js";
-import type { API_RPC_CALL_PARAMS } from "../../types/v1/API_RPC_CALL_PARAMS.js";
-import type { API_RPC_RESPONSE } from "../../types/v1/API_RPC_RESPONSE.js";
+import { api_base_url } from "../../stuff/API_BASE_URL";
+import { create_api_error } from "../../stuff/API_ERROR";
+import { api_log } from "../../stuff/API_LOG";
+import { api_retry } from "../../stuff/API_RETRY";
+import type { API_RPC_CALL_PARAMS } from "../../types/v1/API_RPC_CALL_PARAMS";
+import type { API_RPC_RESPONSE } from "../../types/v1/API_RPC_RESPONSE";
 
 export async function api_rpc_query<t = unknown>({
   params,

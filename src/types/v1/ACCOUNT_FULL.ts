@@ -6,10 +6,10 @@
 // an account that does not exist.
 // ========================================
 
-import type { ACCOUNT_FT_TOKEN } from "./ACCOUNT_FT_TOKEN.js";
-import type { ACCOUNT_NFT } from "./ACCOUNT_NFT.js";
-import type { ACCOUNT_POOL } from "./ACCOUNT_POOL.js";
-import type { ACCOUNT_FULL_STATE } from "./ACCOUNT_FULL_STATE.js";
+import type { ACCOUNT_FT_TOKEN } from "./ACCOUNT_FT_TOKEN";
+import type { ACCOUNT_NFT } from "./ACCOUNT_NFT";
+import type { ACCOUNT_POOL } from "./ACCOUNT_POOL";
+import type { ACCOUNT_FULL_STATE } from "./ACCOUNT_FULL_STATE";
 
 export interface ACCOUNT_FULL {
   account_id: string;

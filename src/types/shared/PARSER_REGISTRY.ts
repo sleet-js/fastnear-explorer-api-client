@@ -7,7 +7,7 @@
 // default one.
 // ========================================
 
-import type { TRANSFER_PARSER } from "./TRANSFER_PARSER.js";
+import type { TRANSFER_PARSER } from "./TRANSFER_PARSER";
 
 export interface PARSER_REGISTRY {
   parsers: TRANSFER_PARSER[];

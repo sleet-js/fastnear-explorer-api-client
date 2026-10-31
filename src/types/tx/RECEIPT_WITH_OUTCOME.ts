@@ -3,8 +3,8 @@
 // a receipt together with the outcome of running it.
 // ========================================
 
-import type { RECEIPT } from "./RECEIPT.js";
-import type { RECEIPT_OUTCOME } from "./RECEIPT_OUTCOME.js";
+import type { RECEIPT } from "./RECEIPT";
+import type { RECEIPT_OUTCOME } from "./RECEIPT_OUTCOME";
 
 export interface RECEIPT_WITH_OUTCOME {
   execution_outcome: {
