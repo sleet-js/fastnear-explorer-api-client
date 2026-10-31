@@ -1,0 +1,106 @@
+// ========================================
+// PLUGINS README
+// how to add a parser of your own.
+//
+// THERE IS ONE MASTER PARSER: `parse_transaction`. it runs every
+// registered plugin over a transaction and merges what they report.
+//
+// a plugin is a plain object with an id and one or more hooks. there
+// is no base class and no registration call — you just pass the
+// object in.
+//
+// THE SIMPLEST PLUGIN
+//
+// a plugin that reports a transfer for a token standard this
+// package does not know:
+//
+//   import { parse_transaction } from "@sleet-js/fastnear-explorer-api-client";
+//
+//   const my_plugin = {
+//     id: "myapp.my-token",
+//     priority: 500,
+//
+//     parse_event(event, context, contract_id) {
+//       if (event.standard !== "my-standard") return [];
+//
+//       return [{
+//         from: null,
+//         to: context.signer_id,
+//         amount: "1",
+//         token_type: "my-standard",
+//         contract_id,
+//         extra: { note: "my token" },   // `extra` marks it as custom
+//       }];
+//     },
+//   };
+//
+//   const result = parse_transaction(tx, { plugins: [my_plugin] });
+//
+//   result.custom_transfers  // <- your transfers land here
+//
+// THE HOOKS
+//
+//   parse_transfers(context)          -> fungible transfers
+//   parse_nft_transfers(context)      -> nft transfers
+//   parse_event(event, context, id)   -> transfers from one event
+//   parse_actions(context)            -> extra parsed actions
+//   matches(context)                  -> false to skip the plugin
+//
+// every hook is optional.
+//
+// PRIORITY
+//
+// lower runs first. the built-ins use:
+//
+//   100  near transfers
+//   150  delete-account refunds
+//   200  nep141
+//   300  nep245
+//   400  nep171
+//
+// a consumer plugin with no priority gets 1000, so it runs after the
+// built-ins. pass a lower number to run it earlier.
+//
+// TAKING OVER A BUILT-IN
+//
+// set `overrides: true` and list the standard in `claims`:
+//
+//   {
+//     id: "myapp.my-nep141",
+//     priority: 50,
+//     overrides: true,
+//     claims: ["nep141"],
+//     parse_event(event, context, contract_id) { ... },
+//   }
+//
+// the built-in nep141 plugin is then dropped, so your transfers are
+// the only ones reported for that standard.
+//
+// REUSING A PLUGIN SET
+//
+// build a registry once and pass it every time:
+//
+//   import {
+//     create_parser_registry,
+//     register_parser,
+//   } from "@sleet-js/fastnear-explorer-api-client";
+//
+//   const registry = register_parser(
+//     create_parser_registry([...DEFAULT_PLUGINS, my_plugin]),
+//     another_plugin,
+//   );
+//
+//   const result = parse_transaction(tx, { registry });
+//
+// a registry REPLACES the defaults, so include DEFAULT_PLUGINS if
+// you still want them.
+//
+// OR KEEP THE DEFAULTS AND ADD
+//
+//   const result = parse_transaction(tx, {
+//     plugins: [my_plugin],
+//     include_defaults: true,   // the default
+//   });
+//
+// ========================================
+// copyright 2026 by sleet.near
