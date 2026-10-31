@@ -12,9 +12,9 @@
 
 import { get_action_payload } from "../get_action_payload";
 import { get_action_type } from "../get_action_type";
-import type { PARSER_CONTEXT } from "../../types/PARSER_CONTEXT";
-import type { TRANSFER_INFO } from "../../types/TRANSFER_INFO";
-import type { TRANSFER_PARSER } from "../../types/TRANSFER_PARSER";
+import type { PARSER_CONTEXT } from "../../types/shared/PARSER_CONTEXT";
+import type { TRANSFER_INFO } from "../../types/shared/TRANSFER_INFO";
+import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER";
 
 export const plugin_delete_account_transfer: TRANSFER_PARSER = {
   id: "builtin.delete-account-transfer",

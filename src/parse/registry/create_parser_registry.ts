@@ -38,8 +38,8 @@
 // built. use register_parser to make a new one with an extra plugin.
 // ========================================
 
-import type { PARSER_REGISTRY } from "../../types/PARSER_REGISTRY";
-import type { TRANSFER_PARSER } from "../../types/TRANSFER_PARSER";
+import type { PARSER_REGISTRY } from "../../types/shared/PARSER_REGISTRY";
+import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER";
 
 export function create_parser_registry(
   plugins: TRANSFER_PARSER[],

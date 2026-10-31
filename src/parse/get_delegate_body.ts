@@ -11,8 +11,8 @@
 
 import { get_action_payload } from "./get_action_payload";
 import { is_delegate_action } from "./is_delegate_action";
-import type { ACTION } from "../types/ACTION";
-import type { DELEGATE_ACTION_BODY } from "../types/DELEGATE_ACTION_BODY";
+import type { ACTION } from "../types/tx/ACTION";
+import type { DELEGATE_ACTION_BODY } from "../types/tx/DELEGATE_ACTION_BODY";
 
 export function get_delegate_body(action: ACTION): DELEGATE_ACTION_BODY | null {
   if (!is_delegate_action(action)) return null;

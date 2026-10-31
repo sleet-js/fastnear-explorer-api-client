@@ -55,6 +55,7 @@ const response = await api_account({
   desc: seen.has("--desc"),
   resume_token: flags.get("--resume"),
   config: { network },
+    quiet: true,
 });
 
 // --- summary -------------------------------------------------------

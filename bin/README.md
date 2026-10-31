@@ -136,6 +136,22 @@ bun bin/api_rpc_call_function.ts wrap.near ft_metadata --json
 
 ---
 
+## the log format
+
+### api_log_format
+
+show the framed log block a call prints.
+
+```sh
+bun bin/api_log_format.ts
+bun bin/api_log_format.ts --quiet
+```
+
+every other bin calls with `quiet: true`, so the bin's own summary is
+what you see. this one shows the frame itself.
+
+---
+
 ## parser bins
 
 ### parse_transaction

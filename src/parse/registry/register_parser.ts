@@ -12,8 +12,8 @@
 // ========================================
 
 import { create_parser_registry } from "./create_parser_registry";
-import type { PARSER_REGISTRY } from "../../types/PARSER_REGISTRY";
-import type { TRANSFER_PARSER } from "../../types/TRANSFER_PARSER";
+import type { PARSER_REGISTRY } from "../../types/shared/PARSER_REGISTRY";
+import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER";
 
 export function register_parser(
   registry: PARSER_REGISTRY,

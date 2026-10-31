@@ -40,6 +40,7 @@ const response = await api_public_key({
   include_all: seen.has("--all"),
   legacy: seen.has("--legacy"),
   config: { network },
+    quiet: true,
 });
 
 // --- summary -------------------------------------------------------

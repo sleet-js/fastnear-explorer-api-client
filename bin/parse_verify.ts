@@ -60,6 +60,7 @@ const blocks = await api_blocks({
   limit: Math.min(block_count, 100),
   desc: true,
   config: { network },
+    quiet: true,
 });
 
 const hashes: string[] = [];
@@ -82,6 +83,7 @@ for (let i = 0; i < hashes.length; i += TRANSACTIONS_BATCH_SIZE) {
   const response = await api_transactions({
     tx_hashes: batch,
     config: { network },
+    quiet: true,
   });
   transactions.push(...response.transactions);
 }

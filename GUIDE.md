@@ -2,10 +2,11 @@
 
 a typed client for the fastnear apis, with a pure transaction parser.
 
-- the tx api — `src/tx/`, one file per endpoint
-- the v1 api — `src/v1/`, one file per endpoint
+- the tx api — `src/fun/tx/`, one file per endpoint
+- the v1 api — `src/fun/v1/`, one file per endpoint
 - the parser — `src/parse/`, one master entry point plus a plugin seam
-- the types — `src/types/`, one type per file, `SCREAMING_SNAKE_CASE`
+- the types — `src/types/`, one type per file, `SCREAMING_SNAKE_CASE`,
+  split by service into `types/tx/`, `types/v1/` and `types/shared/`
 
 functions are `snake_case`. types are `SCREAMING_SNAKE_CASE`.
 
@@ -604,6 +605,43 @@ key.is_post_quantum;  // false
 
 `format_near` and `format_token_amount` work on the STRING, never on a
 number — yoctoNEAR amounts overflow a js number.
+
+---
+
+## the call log
+
+every call prints a framed block — the same format the middleman
+packages use:
+
+```
+=============================
+ TX BLOCKS via POST on: https://tx.main.fastnear.com/v0/blocks
+RESPONSE STATUS: 200 - OK
+RESPONSE: { ... }
+=============================
+```
+
+a failed call prints the same frame with `FAILED` and the error
+instead of the response:
+
+```
+=============================
+ TX ACCOUNT FAILED on: https://tx.main.fastnear.com/v0/account
+RESPONSE STATUS: 400 - Bad Request
+ERROR: tx account failed: Json deserialize error: invalid value: "", the Account ID is too short at line 1 column 17
+=============================
+```
+
+the label is the name of the call — `TX BLOCKS`, `V1 ACCOUNT FULL`,
+`V1 PUBLIC KEY`, `RPC CALL FUNCTION ft_metadata`.
+
+**the log is on by default.** pass `quiet: true` to turn it off:
+
+```typescript
+const blocks = await api_blocks({ limit: 10, quiet: true });
+```
+
+every endpoint takes it.
 
 ---
 

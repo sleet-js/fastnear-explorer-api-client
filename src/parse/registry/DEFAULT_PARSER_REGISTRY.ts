@@ -11,7 +11,7 @@
 
 import { create_parser_registry } from "./create_parser_registry";
 import { DEFAULT_PLUGINS } from "../plugins/DEFAULT_PLUGINS";
-import type { PARSER_REGISTRY } from "../../types/PARSER_REGISTRY";
+import type { PARSER_REGISTRY } from "../../types/shared/PARSER_REGISTRY";
 
 export const DEFAULT_PARSER_REGISTRY: PARSER_REGISTRY = Object.freeze(
   create_parser_registry(DEFAULT_PLUGINS),

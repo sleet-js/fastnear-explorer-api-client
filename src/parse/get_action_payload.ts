@@ -12,7 +12,7 @@
 // ========================================
 
 import { get_action_type } from "./get_action_type";
-import type { ACTION } from "../types/ACTION";
+import type { ACTION } from "../types/tx/ACTION";
 
 export function get_action_payload(
   action: ACTION,

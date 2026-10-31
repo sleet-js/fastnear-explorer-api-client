@@ -36,6 +36,7 @@ const network = resolve_network(flags, seen);
 const response = await api_transactions({
   tx_hashes: positional,
   config: { network },
+  quiet: true,
 });
 
 // --- summary -------------------------------------------------------

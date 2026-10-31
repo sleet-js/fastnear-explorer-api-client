@@ -34,6 +34,7 @@ const network = resolve_network(flags, seen);
 const response = await api_receipt({
   receipt_id,
   config: { network },
+    quiet: true,
 });
 
 // --- summary -------------------------------------------------------

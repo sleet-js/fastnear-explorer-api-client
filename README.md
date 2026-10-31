@@ -40,13 +40,20 @@ something the others do not.
 
 | layer | folder | what it does |
 |---|---|---|
-| tx endpoints | `src/tx/` | one file per endpoint — `api_blocks`, `api_block`, `api_transactions`, `api_account`, `api_receipt` |
-| v1 endpoints | `src/v1/` | one file per endpoint — `api_account_full`, `api_account_ft`, `api_account_nft`, `api_account_staking`, `api_account_contracts`, `api_account_staking_ids`, `api_public_key`, `api_token_holders`, `api_status`, `api_health`, `api_rpc_query`, `api_rpc_call_function` |
+| endpoints | `src/fun/` | one file per endpoint, split by service — `fun/tx/` for the tx api, `fun/v1/` for the v1 api |
 | plumbing | `src/stuff/` | the fetch helpers, the hosts, the endpoint paths, the error type, the retry |
 | parser | `src/parse/` | the transaction parser — pure, no network, no dom |
-| types | `src/types/` | one type per file, `SCREAMING_SNAKE_CASE` |
+| types | `src/types/` | one type per file, `SCREAMING_SNAKE_CASE`, split by service — `types/tx/`, `types/v1/`, `types/shared/` |
 
 functions are `snake_case`. types are `SCREAMING_SNAKE_CASE`.
+
+### the endpoints
+
+| folder | service | functions |
+|---|---|---|
+| `src/fun/tx/` | the tx api | `api_blocks`, `api_block`, `api_transactions`, `api_account`, `api_receipt` |
+| `src/fun/v1/` | the v1 api | `api_account_full`, `api_account_ft`, `api_account_nft`, `api_account_staking`, `api_account_contracts`, `api_account_staking_ids`, `api_public_key`, `api_token_holders`, `api_status`, `api_health` |
+| `src/fun/v1/` | the rpc node | `api_rpc_query`, `api_rpc_call_function` |
 
 ---
 
@@ -162,6 +169,35 @@ const blocks = await api_blocks({
   config: { base_url: "https://my-proxy.example.com" },
 });
 ```
+
+---
+
+## the call log
+
+every call prints a framed block — the same format the middleman
+packages use:
+
+```
+=============================
+ TX BLOCKS via POST on: https://tx.main.fastnear.com/v0/blocks
+RESPONSE STATUS: 200 - OK
+RESPONSE: { ... }
+=============================
+```
+
+a failed call prints the same frame with `FAILED` and the error
+instead of the response.
+
+**the log is on by default.** pass `quiet: true` to turn it off — a
+library that prints on every call is unusable inside a server or a
+ui:
+
+```ts
+const blocks = await api_blocks({ limit: 10, quiet: true });
+```
+
+`bun bin/api_log_format.ts` shows the format, and `--quiet` shows the
+same call with the log off.
 
 ---
 

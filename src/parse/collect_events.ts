@@ -11,8 +11,8 @@
 // ========================================
 
 import { parse_event_json } from "./parse_event_json";
-import type { COLLECTED_EVENT } from "../types/COLLECTED_EVENT";
-import type { TRANSACTION_DETAIL } from "../types/TRANSACTION_DETAIL";
+import type { COLLECTED_EVENT } from "../types/shared/COLLECTED_EVENT";
+import type { TRANSACTION_DETAIL } from "../types/tx/TRANSACTION_DETAIL";
 
 export function collect_events(tx: TRANSACTION_DETAIL): COLLECTED_EVENT[] {
   const collected: COLLECTED_EVENT[] = [];

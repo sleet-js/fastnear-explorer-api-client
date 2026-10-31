@@ -45,6 +45,7 @@ const response = await api_blocks({
   to_block_height: to !== undefined ? Number(to) : undefined,
   desc: seen.has("--desc"),
   config: { network },
+    quiet: true,
 });
 
 // --- summary -------------------------------------------------------

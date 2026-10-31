@@ -10,13 +10,14 @@
 // the map is an error — a half-filled path would silently hit the
 // wrong endpoint.
 //
-// the api answers a failure with a json body or plain text, and the
-// retry helper handles a 429.
+// every call prints a framed log block — the middleman format. pass
+// `quiet: true` to turn it off.
 // ========================================
 
 import { create_api_error } from "./API_ERROR";
 import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG";
 import { api_base_url } from "./API_BASE_URL";
+import { api_log } from "./API_LOG";
 import { api_retry } from "./API_RETRY";
 import { V1_ENDPOINT_PATHS, type V1_ENDPOINT_KEY } from "./V1_ENDPOINT_PATHS";
 
@@ -26,7 +27,10 @@ export interface API_GET_PATH_PARAMS {
   values?: Record<string, string>;
   config?: API_CLIENT_CONFIG;
   signal?: AbortSignal;
+  // the uppercase name of the call, for the log.
   label?: string;
+  // turn the log off.
+  quiet?: boolean;
   not_found_as_null?: boolean;
 }
 
@@ -36,9 +40,11 @@ export async function api_get_path<t = unknown>({
   config = {},
   signal,
   label,
+  quiet = false,
   not_found_as_null = false,
 }: API_GET_PATH_PARAMS): Promise<t | null> {
   const url = `${api_base_url("api", config)}${fill_path(endpoint, values)}`;
+  const call_label = label ?? `V1 ${endpoint.toUpperCase()}`;
 
   return api_retry(
     async () => {
@@ -48,19 +54,57 @@ export async function api_get_path<t = unknown>({
         signal,
       });
 
-      if (response.status === 404 && not_found_as_null) return null;
+      if (response.status === 404 && not_found_as_null) {
+        if (!quiet) {
+          api_log({
+            label: call_label,
+            url,
+            method: "GET",
+            status: response.status,
+            status_text: response.statusText,
+            response: null,
+          });
+        }
+        return null;
+      }
 
       if (!response.ok) {
         const text = await response.text().catch(() => "");
-        throw create_api_error(
+        const error = create_api_error(
           response.status,
           response.statusText,
           text,
-          label ?? `api_get_path ${endpoint} failed`,
+          `${call_label.toLowerCase()} failed`,
         );
+
+        if (!quiet) {
+          api_log({
+            label: call_label,
+            url,
+            method: "GET",
+            status: response.status,
+            status_text: response.statusText,
+            error: error.message,
+          });
+        }
+
+        throw error;
       }
 
-      return (await response.json()) as t;
+      const json = (await response.json()) as t;
+
+      if (!quiet) {
+        api_log({
+          label: call_label,
+          url,
+          method: "GET",
+          status: response.status,
+          status_text: response.statusText,
+          response: json,
+        });
+      }
+
+      return json;
     },
     { attempts: 3 },
   );
@@ -106,3 +150,5 @@ function fill_path(
 
   return filled;
 }
+// ========================================
+// copyright 2026 by sleet.near

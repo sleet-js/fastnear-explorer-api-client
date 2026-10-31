@@ -8,7 +8,7 @@
 // ========================================
 
 import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG";
-import type { NETWORK_ID } from "../types/NETWORK_ID";
+import type { NETWORK_ID } from "../types/shared/NETWORK_ID";
 
 export const DEFAULT_NETWORK: NETWORK_ID = "mainnet";
 

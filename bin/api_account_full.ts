@@ -38,6 +38,7 @@ const network = resolve_network(flags, seen);
 const account = await api_account_full({
   account_id,
   config: { network },
+    quiet: true,
 });
 
 // --- summary -------------------------------------------------------

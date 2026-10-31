@@ -55,6 +55,7 @@ const result = await api_rpc_call_function({
   method_name,
   args,
   config: { network },
+    quiet: true,
 });
 
 // --- summary -------------------------------------------------------

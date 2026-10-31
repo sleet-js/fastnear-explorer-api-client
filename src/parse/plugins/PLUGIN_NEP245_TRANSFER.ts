@@ -19,9 +19,9 @@
 import { is_event_data_object } from "../is_event_data_object";
 import { normalize_event_data } from "../normalize_event_data";
 import { normalize_owner } from "../normalize_owner";
-import type { PARSER_CONTEXT } from "../../types/PARSER_CONTEXT";
-import type { TRANSFER_INFO } from "../../types/TRANSFER_INFO";
-import type { TRANSFER_PARSER } from "../../types/TRANSFER_PARSER";
+import type { PARSER_CONTEXT } from "../../types/shared/PARSER_CONTEXT";
+import type { TRANSFER_INFO } from "../../types/shared/TRANSFER_INFO";
+import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER";
 
 export const plugin_nep245_transfer: TRANSFER_PARSER = {
   id: "builtin.nep245-transfer",

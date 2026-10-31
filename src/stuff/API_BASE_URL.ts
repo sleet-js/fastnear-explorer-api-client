@@ -10,7 +10,7 @@
 
 import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG";
 import { ENDPOINTS } from "./ENDPOINTS";
-import type { NETWORK_ID } from "../types/NETWORK_ID";
+import type { NETWORK_ID } from "../types/shared/NETWORK_ID";
 
 export type SERVICE = "tx" | "api" | "rpc";
 

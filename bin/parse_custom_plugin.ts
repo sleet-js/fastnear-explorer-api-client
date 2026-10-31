@@ -94,6 +94,7 @@ const override_plugin: TRANSFER_PARSER = {
 const response = await api_transactions({
   tx_hashes: positional,
   config: { network },
+  quiet: true,
 });
 
 for (const tx of response.transactions) {

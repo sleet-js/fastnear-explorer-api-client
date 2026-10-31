@@ -19,8 +19,8 @@ import { base58_from_base64 } from "./base58_from_base64";
 import { get_action_payload } from "./get_action_payload";
 import { get_action_type } from "./get_action_type";
 import { read_access_key_permission } from "./read_access_key_permission";
-import type { ACTION } from "../types/ACTION";
-import type { PARSED_ACTION } from "../types/PARSED_ACTION";
+import type { ACTION } from "../types/tx/ACTION";
+import type { PARSED_ACTION } from "../types/shared/PARSED_ACTION";
 
 export function parse_action(action: ACTION): PARSED_ACTION {
   const type = get_action_type(action);

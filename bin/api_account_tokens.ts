@@ -59,6 +59,7 @@ if (show_ft) {
       account_id,
       kind: "ft",
       config: { network },
+    quiet: true,
     });
     console.log("FT CONTRACTS", response?.contract_ids.length ?? 0);
     for (const contract_id of response?.contract_ids ?? []) {
@@ -98,6 +99,7 @@ if (show_staking) {
     const response = await api_account_staking_ids({
       account_id,
       config: { network },
+    quiet: true,
     });
     console.log("STAKING POOLS", response?.pools.length ?? 0);
     for (const pool_id of response?.pools ?? []) {

@@ -14,9 +14,9 @@
 import { is_event_data_object } from "../is_event_data_object";
 import { normalize_event_data } from "../normalize_event_data";
 import { normalize_owner } from "../normalize_owner";
-import type { NFT_TRANSFER_INFO } from "../../types/NFT_TRANSFER_INFO";
-import type { PARSER_CONTEXT } from "../../types/PARSER_CONTEXT";
-import type { TRANSFER_PARSER } from "../../types/TRANSFER_PARSER";
+import type { NFT_TRANSFER_INFO } from "../../types/shared/NFT_TRANSFER_INFO";
+import type { PARSER_CONTEXT } from "../../types/shared/PARSER_CONTEXT";
+import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER";
 
 export const plugin_nep171_nft_transfer: TRANSFER_PARSER = {
   id: "builtin.nep171-nft-transfer",

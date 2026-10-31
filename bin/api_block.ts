@@ -46,6 +46,7 @@ const response = await api_block({
   with_transactions: seen.has("--transactions"),
   with_receipts: seen.has("--receipts"),
   config: { network },
+    quiet: true,
 });
 
 // --- summary -------------------------------------------------------

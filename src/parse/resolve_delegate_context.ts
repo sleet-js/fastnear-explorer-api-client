@@ -20,9 +20,9 @@
 // ========================================
 
 import { get_delegate_body } from "./get_delegate_body";
-import type { ACTION } from "../types/ACTION";
-import type { DELEGATE_CONTEXT } from "../types/DELEGATE_CONTEXT";
-import type { RAW_TRANSACTION } from "../types/RAW_TRANSACTION";
+import type { ACTION } from "../types/tx/ACTION";
+import type { DELEGATE_CONTEXT } from "../types/shared/DELEGATE_CONTEXT";
+import type { RAW_TRANSACTION } from "../types/tx/RAW_TRANSACTION";
 
 export function resolve_delegate_context(
   transaction: RAW_TRANSACTION,

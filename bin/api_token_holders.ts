@@ -37,6 +37,7 @@ const top = top_raw !== undefined ? Number(top_raw) : undefined;
 const response = await api_token_holders({
   token_id,
   config: { network },
+    quiet: true,
 });
 
 // --- summary -------------------------------------------------------

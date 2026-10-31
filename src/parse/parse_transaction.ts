@@ -60,16 +60,16 @@ import { resolve_success } from "./resolve_success";
 import { resolve_total_gas } from "./resolve_total_gas";
 import { create_parser_registry } from "./registry/create_parser_registry";
 import { DEFAULT_PARSER_REGISTRY } from "./registry/DEFAULT_PARSER_REGISTRY";
-import type { CUSTOM_TRANSFER } from "../types/CUSTOM_TRANSFER";
-import type { NFT_TRANSFER_INFO } from "../types/NFT_TRANSFER_INFO";
-import type { PARSE_RESULT } from "../types/PARSE_RESULT";
-import type { PARSED_ACTION } from "../types/PARSED_ACTION";
-import type { PARSER_CONTEXT } from "../types/PARSER_CONTEXT";
-import type { PARSER_OPTIONS } from "../types/PARSER_OPTIONS";
-import type { PARSER_REGISTRY } from "../types/PARSER_REGISTRY";
-import type { TRANSACTION_DETAIL } from "../types/TRANSACTION_DETAIL";
-import type { TRANSFER_INFO } from "../types/TRANSFER_INFO";
-import type { TRANSFER_PARSER } from "../types/TRANSFER_PARSER";
+import type { CUSTOM_TRANSFER } from "../types/shared/CUSTOM_TRANSFER";
+import type { NFT_TRANSFER_INFO } from "../types/shared/NFT_TRANSFER_INFO";
+import type { PARSE_RESULT } from "../types/shared/PARSE_RESULT";
+import type { PARSED_ACTION } from "../types/shared/PARSED_ACTION";
+import type { PARSER_CONTEXT } from "../types/shared/PARSER_CONTEXT";
+import type { PARSER_OPTIONS } from "../types/shared/PARSER_OPTIONS";
+import type { PARSER_REGISTRY } from "../types/shared/PARSER_REGISTRY";
+import type { TRANSACTION_DETAIL } from "../types/tx/TRANSACTION_DETAIL";
+import type { TRANSFER_INFO } from "../types/shared/TRANSFER_INFO";
+import type { TRANSFER_PARSER } from "../types/shared/TRANSFER_PARSER";
 
 export function parse_transaction(
   tx: TRANSACTION_DETAIL,

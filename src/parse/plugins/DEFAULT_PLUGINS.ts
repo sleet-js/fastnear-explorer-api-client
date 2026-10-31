@@ -19,7 +19,7 @@ import { plugin_near_transfer } from "./PLUGIN_NEAR_TRANSFER";
 import { plugin_nep141_transfer } from "./PLUGIN_NEP141_TRANSFER";
 import { plugin_nep171_nft_transfer } from "./PLUGIN_NEP171_NFT_TRANSFER";
 import { plugin_nep245_transfer } from "./PLUGIN_NEP245_TRANSFER";
-import type { TRANSFER_PARSER } from "../../types/TRANSFER_PARSER";
+import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER";
 
 export const DEFAULT_PLUGINS: TRANSFER_PARSER[] = [
   plugin_near_transfer,

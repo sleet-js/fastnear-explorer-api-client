@@ -35,39 +35,39 @@ export {
 export { api_base_url, type SERVICE } from "./stuff/API_BASE_URL";
 export { create_api_error, type API_ERROR } from "./stuff/API_ERROR";
 export type { API_CLIENT_CONFIG } from "./stuff/API_CLIENT_CONFIG";
-export type { NETWORK_ID as NETWORK } from "./types/NETWORK_ID";
+export type { NETWORK_ID as NETWORK } from "./types/shared/NETWORK_ID";
 
 // --- the tx api ---------------------------------------------------
-export { api_blocks } from "./tx/API_BLOCKS";
-export { api_block } from "./tx/API_BLOCK";
+export { api_blocks } from "./fun/tx/API_BLOCKS";
+export { api_block } from "./fun/tx/API_BLOCK";
 export {
   api_transactions,
   TRANSACTIONS_BATCH_SIZE,
-} from "./tx/API_TRANSACTIONS";
-export { api_account } from "./tx/API_ACCOUNT";
-export { api_receipt } from "./tx/API_RECEIPT";
+} from "./fun/tx/API_TRANSACTIONS";
+export { api_account } from "./fun/tx/API_ACCOUNT";
+export { api_receipt } from "./fun/tx/API_RECEIPT";
 
 // --- the v1 api ---------------------------------------------------
-export { api_health } from "./v1/API_HEALTH";
-export { api_status } from "./v1/API_STATUS";
-export { api_account_full } from "./v1/API_ACCOUNT_FULL";
-export { api_account_ft } from "./v1/API_ACCOUNT_FT";
-export { api_account_nft } from "./v1/API_ACCOUNT_NFT";
-export { api_account_staking } from "./v1/API_ACCOUNT_STAKING";
+export { api_health } from "./fun/v1/API_HEALTH";
+export { api_status } from "./fun/v1/API_STATUS";
+export { api_account_full } from "./fun/v1/API_ACCOUNT_FULL";
+export { api_account_ft } from "./fun/v1/API_ACCOUNT_FT";
+export { api_account_nft } from "./fun/v1/API_ACCOUNT_NFT";
+export { api_account_staking } from "./fun/v1/API_ACCOUNT_STAKING";
 export {
   api_account_contracts,
   type ACCOUNT_CONTRACT_KIND,
-} from "./v1/API_ACCOUNT_CONTRACTS";
-export { api_account_staking_ids } from "./v1/API_ACCOUNT_STAKING_IDS";
+} from "./fun/v1/API_ACCOUNT_CONTRACTS";
+export { api_account_staking_ids } from "./fun/v1/API_ACCOUNT_STAKING_IDS";
 export {
   api_public_key,
   type API_PUBLIC_KEY_PARAMS_EXTENDED,
-} from "./v1/API_PUBLIC_KEY";
-export { api_token_holders } from "./v1/API_TOKEN_HOLDERS";
+} from "./fun/v1/API_PUBLIC_KEY";
+export { api_token_holders } from "./fun/v1/API_TOKEN_HOLDERS";
 
 // --- the rpc node -------------------------------------------------
-export { api_rpc_query } from "./v1/API_RPC_QUERY";
-export { api_rpc_call_function } from "./v1/API_RPC_CALL_FUNCTION";
+export { api_rpc_query } from "./fun/v1/API_RPC_QUERY";
+export { api_rpc_call_function } from "./fun/v1/API_RPC_CALL_FUNCTION";
 
 // --- the parser ---------------------------------------------------
 export { parse_transaction } from "./parse/parse_transaction";
@@ -112,87 +112,87 @@ export { decode_base64_bytes } from "./parse/decode_base64";
 export { base58_from_base64 } from "./parse/base58_from_base64";
 
 // --- types --------------------------------------------------------
-export type { ACTION } from "./types/ACTION";
-export type { UNIT_ACTION } from "./types/UNIT_ACTION";
-export type { ENVELOPED_ACTION } from "./types/ENVELOPED_ACTION";
-export type { RAW_ACTION } from "./types/RAW_ACTION";
-export type { ACTION_TYPE } from "./types/ACTION_TYPE";
-export type { ADD_KEY_ACTION } from "./types/ADD_KEY_ACTION";
-export type { DELEGATE_ACTION } from "./types/DELEGATE_ACTION";
-export type { DELEGATE_ACTION_BODY } from "./types/DELEGATE_ACTION_BODY";
-export type { DELETE_ACCOUNT_ACTION } from "./types/DELETE_ACCOUNT_ACTION";
-export type { DELETE_KEY_ACTION } from "./types/DELETE_KEY_ACTION";
-export type { DEPLOY_CONTRACT_ACTION } from "./types/DEPLOY_CONTRACT_ACTION";
-export type { FUNCTION_CALL_ACTION } from "./types/FUNCTION_CALL_ACTION";
-export type { STAKE_ACTION } from "./types/STAKE_ACTION";
-export type { TRANSFER_ACTION } from "./types/TRANSFER_ACTION";
-export type { USE_GLOBAL_CONTRACT_ACTION } from "./types/USE_GLOBAL_CONTRACT_ACTION";
-export type { ACCESS_KEY } from "./types/ACCESS_KEY";
-export type { ACCESS_KEY_PERMISSION } from "./types/ACCESS_KEY_PERMISSION";
-export type { FUNCTION_CALL_PERMISSION } from "./types/FUNCTION_CALL_PERMISSION";
-export type { ACTION_ERROR } from "./types/ACTION_ERROR";
-export type { ERROR_KIND } from "./types/ERROR_KIND";
-export type { EXECUTION_STATUS } from "./types/EXECUTION_STATUS";
-export type { EXECUTION_OUTCOME } from "./types/EXECUTION_OUTCOME";
-export type { RECEIPT } from "./types/RECEIPT";
-export type { RECEIPT_OUTCOME } from "./types/RECEIPT_OUTCOME";
-export type { RECEIPT_WITH_OUTCOME } from "./types/RECEIPT_WITH_OUTCOME";
-export type { RECEIPT_ROW } from "./types/RECEIPT_ROW";
-export type { RAW_TRANSACTION } from "./types/RAW_TRANSACTION";
-export type { TRANSACTION_DETAIL } from "./types/TRANSACTION_DETAIL";
-export type { BLOCK_HEADER } from "./types/BLOCK_HEADER";
-export type { BLOCK_TX } from "./types/BLOCK_TX";
-export type { BLOCK_FILTERS } from "./types/BLOCK_FILTERS";
-export type { ACCOUNT_TX } from "./types/ACCOUNT_TX";
-export type { ACCOUNT_FILTERS } from "./types/ACCOUNT_FILTERS";
-export type { ACCOUNT_FULL } from "./types/ACCOUNT_FULL";
-export type { ACCOUNT_FULL_STATE } from "./types/ACCOUNT_FULL_STATE";
-export type { ACCOUNT_FT_TOKEN } from "./types/ACCOUNT_FT_TOKEN";
-export type { ACCOUNT_NFT } from "./types/ACCOUNT_NFT";
-export type { ACCOUNT_POOL } from "./types/ACCOUNT_POOL";
-export type { PARSED_ACTION } from "./types/PARSED_ACTION";
-export type { PARSED_PUBLIC_KEY } from "./types/PARSED_PUBLIC_KEY";
-export type { PARSE_RESULT } from "./types/PARSE_RESULT";
-export type { PARSER_CONTEXT } from "./types/PARSER_CONTEXT";
-export type { PARSER_OPTIONS } from "./types/PARSER_OPTIONS";
-export type { PARSER_REGISTRY } from "./types/PARSER_REGISTRY";
-export type { TRANSFER_PARSER } from "./types/TRANSFER_PARSER";
-export type { TRANSFER_INFO } from "./types/TRANSFER_INFO";
-export type { NFT_TRANSFER_INFO } from "./types/NFT_TRANSFER_INFO";
-export type { CUSTOM_TRANSFER } from "./types/CUSTOM_TRANSFER";
-export type { TOKEN_TYPE } from "./types/TOKEN_TYPE";
-export type { EVENT_JSON } from "./types/EVENT_JSON";
-export type { EVENT_DATA } from "./types/EVENT_DATA";
-export type { DELEGATE_CONTEXT } from "./types/DELEGATE_CONTEXT";
-export type { COLLECTED_EVENT } from "./types/COLLECTED_EVENT";
-export type { API_RPC_RESPONSE } from "./types/API_RPC_RESPONSE";
-export type { API_RPC_PARAMS } from "./types/API_RPC_PARAMS";
-export type { API_RPC_CALL_PARAMS } from "./types/API_RPC_CALL_PARAMS";
-export type { API_RPC_CALL_FUNCTION_PARAMS } from "./types/API_RPC_CALL_FUNCTION_PARAMS";
-export type { API_RPC_CALL_FUNCTION_RESULT } from "./types/API_RPC_CALL_FUNCTION_RESULT";
-export type { API_BLOCKS_RESPONSE } from "./types/API_BLOCKS_RESPONSE";
-export type { API_BLOCKS_PARAMS } from "./types/API_BLOCKS_PARAMS";
-export type { API_BLOCK_RESPONSE } from "./types/API_BLOCK_RESPONSE";
-export type { API_BLOCK_PARAMS } from "./types/API_BLOCK_PARAMS";
-export type { API_TRANSACTIONS_RESPONSE } from "./types/API_TRANSACTIONS_RESPONSE";
-export type { API_TRANSACTIONS_PARAMS } from "./types/API_TRANSACTIONS_PARAMS";
-export type { API_ACCOUNT_RESPONSE } from "./types/API_ACCOUNT_RESPONSE";
-export type { API_ACCOUNT_PARAMS } from "./types/API_ACCOUNT_PARAMS";
-export type { API_RECEIPT_RESPONSE } from "./types/API_RECEIPT_RESPONSE";
-export type { API_RECEIPT_PARAMS } from "./types/API_RECEIPT_PARAMS";
-export type { API_ACCOUNT_FULL_PARAMS } from "./types/API_ACCOUNT_FULL_PARAMS";
-export type { API_ACCOUNT_TOKENS_PARAMS } from "./types/API_ACCOUNT_TOKENS_PARAMS";
-export type { API_PUBLIC_KEY_PARAMS } from "./types/API_PUBLIC_KEY_PARAMS";
-export type { API_TOKEN_HOLDERS_PARAMS } from "./types/API_TOKEN_HOLDERS_PARAMS";
-export type { API_STATUS_PARAMS } from "./types/API_STATUS_PARAMS";
-export type { HEALTH_RESPONSE } from "./types/HEALTH_RESPONSE";
-export type { API_STATUS_RESPONSE } from "./types/API_STATUS_RESPONSE";
-export type { PUBLIC_KEY_LOOKUP_RESPONSE } from "./types/PUBLIC_KEY_LOOKUP_RESPONSE";
-export type { ACCOUNT_CONTRACTS_RESPONSE } from "./types/ACCOUNT_CONTRACTS_RESPONSE";
-export type { ACCOUNT_STAKING_IDS_RESPONSE } from "./types/ACCOUNT_STAKING_IDS_RESPONSE";
-export type { ACCOUNT_FT_RESPONSE } from "./types/ACCOUNT_FT_RESPONSE";
-export type { ACCOUNT_NFT_RESPONSE } from "./types/ACCOUNT_NFT_RESPONSE";
-export type { ACCOUNT_STAKING_RESPONSE } from "./types/ACCOUNT_STAKING_RESPONSE";
-export type { TOKEN_HOLDERS_RESPONSE } from "./types/TOKEN_HOLDERS_RESPONSE";
+export type { ACTION } from "./types/tx/ACTION";
+export type { UNIT_ACTION } from "./types/tx/UNIT_ACTION";
+export type { ENVELOPED_ACTION } from "./types/tx/ENVELOPED_ACTION";
+export type { RAW_ACTION } from "./types/tx/RAW_ACTION";
+export type { ACTION_TYPE } from "./types/tx/ACTION_TYPE";
+export type { ADD_KEY_ACTION } from "./types/tx/ADD_KEY_ACTION";
+export type { DELEGATE_ACTION } from "./types/tx/DELEGATE_ACTION";
+export type { DELEGATE_ACTION_BODY } from "./types/tx/DELEGATE_ACTION_BODY";
+export type { DELETE_ACCOUNT_ACTION } from "./types/tx/DELETE_ACCOUNT_ACTION";
+export type { DELETE_KEY_ACTION } from "./types/tx/DELETE_KEY_ACTION";
+export type { DEPLOY_CONTRACT_ACTION } from "./types/tx/DEPLOY_CONTRACT_ACTION";
+export type { FUNCTION_CALL_ACTION } from "./types/tx/FUNCTION_CALL_ACTION";
+export type { STAKE_ACTION } from "./types/tx/STAKE_ACTION";
+export type { TRANSFER_ACTION } from "./types/tx/TRANSFER_ACTION";
+export type { USE_GLOBAL_CONTRACT_ACTION } from "./types/tx/USE_GLOBAL_CONTRACT_ACTION";
+export type { ACCESS_KEY } from "./types/tx/ACCESS_KEY";
+export type { ACCESS_KEY_PERMISSION } from "./types/tx/ACCESS_KEY_PERMISSION";
+export type { FUNCTION_CALL_PERMISSION } from "./types/tx/FUNCTION_CALL_PERMISSION";
+export type { ACTION_ERROR } from "./types/tx/ACTION_ERROR";
+export type { ERROR_KIND } from "./types/tx/ERROR_KIND";
+export type { EXECUTION_STATUS } from "./types/tx/EXECUTION_STATUS";
+export type { EXECUTION_OUTCOME } from "./types/tx/EXECUTION_OUTCOME";
+export type { RECEIPT } from "./types/tx/RECEIPT";
+export type { RECEIPT_OUTCOME } from "./types/tx/RECEIPT_OUTCOME";
+export type { RECEIPT_WITH_OUTCOME } from "./types/tx/RECEIPT_WITH_OUTCOME";
+export type { RECEIPT_ROW } from "./types/tx/RECEIPT_ROW";
+export type { RAW_TRANSACTION } from "./types/tx/RAW_TRANSACTION";
+export type { TRANSACTION_DETAIL } from "./types/tx/TRANSACTION_DETAIL";
+export type { BLOCK_HEADER } from "./types/tx/BLOCK_HEADER";
+export type { BLOCK_TX } from "./types/tx/BLOCK_TX";
+export type { BLOCK_FILTERS } from "./types/tx/BLOCK_FILTERS";
+export type { ACCOUNT_TX } from "./types/tx/ACCOUNT_TX";
+export type { ACCOUNT_FILTERS } from "./types/tx/ACCOUNT_FILTERS";
+export type { ACCOUNT_FULL } from "./types/v1/ACCOUNT_FULL";
+export type { ACCOUNT_FULL_STATE } from "./types/v1/ACCOUNT_FULL_STATE";
+export type { ACCOUNT_FT_TOKEN } from "./types/v1/ACCOUNT_FT_TOKEN";
+export type { ACCOUNT_NFT } from "./types/v1/ACCOUNT_NFT";
+export type { ACCOUNT_POOL } from "./types/v1/ACCOUNT_POOL";
+export type { PARSED_ACTION } from "./types/shared/PARSED_ACTION";
+export type { PARSED_PUBLIC_KEY } from "./types/shared/PARSED_PUBLIC_KEY";
+export type { PARSE_RESULT } from "./types/shared/PARSE_RESULT";
+export type { PARSER_CONTEXT } from "./types/shared/PARSER_CONTEXT";
+export type { PARSER_OPTIONS } from "./types/shared/PARSER_OPTIONS";
+export type { PARSER_REGISTRY } from "./types/shared/PARSER_REGISTRY";
+export type { TRANSFER_PARSER } from "./types/shared/TRANSFER_PARSER";
+export type { TRANSFER_INFO } from "./types/shared/TRANSFER_INFO";
+export type { NFT_TRANSFER_INFO } from "./types/shared/NFT_TRANSFER_INFO";
+export type { CUSTOM_TRANSFER } from "./types/shared/CUSTOM_TRANSFER";
+export type { TOKEN_TYPE } from "./types/shared/TOKEN_TYPE";
+export type { EVENT_JSON } from "./types/shared/EVENT_JSON";
+export type { EVENT_DATA } from "./types/shared/EVENT_DATA";
+export type { DELEGATE_CONTEXT } from "./types/shared/DELEGATE_CONTEXT";
+export type { COLLECTED_EVENT } from "./types/shared/COLLECTED_EVENT";
+export type { API_RPC_RESPONSE } from "./types/v1/API_RPC_RESPONSE";
+export type { API_RPC_PARAMS } from "./types/v1/API_RPC_PARAMS";
+export type { API_RPC_CALL_PARAMS } from "./types/v1/API_RPC_CALL_PARAMS";
+export type { API_RPC_CALL_FUNCTION_PARAMS } from "./types/v1/API_RPC_CALL_FUNCTION_PARAMS";
+export type { API_RPC_CALL_FUNCTION_RESULT } from "./types/v1/API_RPC_CALL_FUNCTION_RESULT";
+export type { API_BLOCKS_RESPONSE } from "./types/tx/API_BLOCKS_RESPONSE";
+export type { API_BLOCKS_PARAMS } from "./types/tx/API_BLOCKS_PARAMS";
+export type { API_BLOCK_RESPONSE } from "./types/tx/API_BLOCK_RESPONSE";
+export type { API_BLOCK_PARAMS } from "./types/tx/API_BLOCK_PARAMS";
+export type { API_TRANSACTIONS_RESPONSE } from "./types/tx/API_TRANSACTIONS_RESPONSE";
+export type { API_TRANSACTIONS_PARAMS } from "./types/tx/API_TRANSACTIONS_PARAMS";
+export type { API_ACCOUNT_RESPONSE } from "./types/tx/API_ACCOUNT_RESPONSE";
+export type { API_ACCOUNT_PARAMS } from "./types/tx/API_ACCOUNT_PARAMS";
+export type { API_RECEIPT_RESPONSE } from "./types/tx/API_RECEIPT_RESPONSE";
+export type { API_RECEIPT_PARAMS } from "./types/tx/API_RECEIPT_PARAMS";
+export type { API_ACCOUNT_FULL_PARAMS } from "./types/v1/API_ACCOUNT_FULL_PARAMS";
+export type { API_ACCOUNT_TOKENS_PARAMS } from "./types/v1/API_ACCOUNT_TOKENS_PARAMS";
+export type { API_PUBLIC_KEY_PARAMS } from "./types/v1/API_PUBLIC_KEY_PARAMS";
+export type { API_TOKEN_HOLDERS_PARAMS } from "./types/v1/API_TOKEN_HOLDERS_PARAMS";
+export type { API_STATUS_PARAMS } from "./types/v1/API_STATUS_PARAMS";
+export type { HEALTH_RESPONSE } from "./types/v1/HEALTH_RESPONSE";
+export type { API_STATUS_RESPONSE } from "./types/v1/API_STATUS_RESPONSE";
+export type { PUBLIC_KEY_LOOKUP_RESPONSE } from "./types/v1/PUBLIC_KEY_LOOKUP_RESPONSE";
+export type { ACCOUNT_CONTRACTS_RESPONSE } from "./types/v1/ACCOUNT_CONTRACTS_RESPONSE";
+export type { ACCOUNT_STAKING_IDS_RESPONSE } from "./types/v1/ACCOUNT_STAKING_IDS_RESPONSE";
+export type { ACCOUNT_FT_RESPONSE } from "./types/v1/ACCOUNT_FT_RESPONSE";
+export type { ACCOUNT_NFT_RESPONSE } from "./types/v1/ACCOUNT_NFT_RESPONSE";
+export type { ACCOUNT_STAKING_RESPONSE } from "./types/v1/ACCOUNT_STAKING_RESPONSE";
+export type { TOKEN_HOLDERS_RESPONSE } from "./types/v1/TOKEN_HOLDERS_RESPONSE";
 // ========================================
 // copyright 2026 by sleet.near

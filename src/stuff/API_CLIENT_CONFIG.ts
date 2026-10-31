@@ -6,7 +6,7 @@
 // overrides the host entirely — useful for a local mock or a proxy.
 // ========================================
 
-import type { NETWORK_ID } from "../types/NETWORK_ID";
+import type { NETWORK_ID } from "../types/shared/NETWORK_ID";
 
 export interface API_CLIENT_CONFIG {
   network?: NETWORK_ID;
