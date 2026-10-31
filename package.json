@@ -1,6 +1,6 @@
 {
   "name": "@sleet-js/fastnear-explorer-api-client",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Clean TypeScript client for the FastNear Explorer API, with a pure transaction parser.",
   "license": "MIT",
   "homepage": "https://sleet-js.near.page",
