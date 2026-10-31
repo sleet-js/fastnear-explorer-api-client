@@ -1,6 +1,6 @@
 # @sleet-js/fastnear-explorer-api-client
 
-clean ts library for the fastnear explorer api, with a pure transaction parser.
+clean ts library for the fastnear apis, with a pure transaction parser.
 
 ```sh
 bun i
@@ -16,12 +16,33 @@ bun run verify
 
 ---
 
+## the apis it covers
+
+three services, all fastnear's, none of them redundant — each covers
+something the others do not.
+
+| service | host | repo |
+|---|---|---|
+| **tx api** | `tx.main.fastnear.com` | [fastnear/explorer-api](https://github.com/fastnear/explorer-api) |
+| **v1 api** | `api.fastnear.com` | [fastnear/fastnear-api-server-rs](https://github.com/fastnear/fastnear-api-server-rs) |
+| **rpc node** | `rpc.mainnet.fastnear.com` | [fastnear/nearcore](https://github.com/fastnear/nearcore) — this one is the standard NEAR node, not a fastnear service |
+
+- the **tx api** gives the transaction graph — nested actions,
+  receipts, outcomes, event logs
+- the **v1 api** gives aggregated account state — balance, storage,
+  every ft / nft / pool held, plus the public key lookup
+- the **rpc node** gives contract internals — `ft_metadata`,
+  `view_account`, `view_access_key_list`
+
+---
+
 ## what is in here
 
 | layer | folder | what it does |
 |---|---|---|
-| endpoints | `src/fun/` | one file per endpoint — `api_blocks`, `api_block`, `api_transactions`, `api_account`, `api_receipt`, `api_account_full`, `api_rpc_query`, `api_rpc_call_function` |
-| plumbing | `src/stuff/` | the fetch helper, the hosts, the endpoint paths, the error type, the retry |
+| tx endpoints | `src/tx/` | one file per endpoint — `api_blocks`, `api_block`, `api_transactions`, `api_account`, `api_receipt` |
+| v1 endpoints | `src/v1/` | one file per endpoint — `api_account_full`, `api_account_ft`, `api_account_nft`, `api_account_staking`, `api_account_contracts`, `api_account_staking_ids`, `api_public_key`, `api_token_holders`, `api_status`, `api_health`, `api_rpc_query`, `api_rpc_call_function` |
+| plumbing | `src/stuff/` | the fetch helpers, the hosts, the endpoint paths, the error type, the retry |
 | parser | `src/parse/` | the transaction parser — pure, no network, no dom |
 | types | `src/types/` | one type per file, `SCREAMING_SNAKE_CASE` |
 
@@ -31,13 +52,15 @@ functions are `snake_case`. types are `SCREAMING_SNAKE_CASE`.
 
 ## the api
 
+### the tx api
+
 ```ts
 import {
   api_blocks,
   api_block,
   api_transactions,
   api_account,
-  api_account_full,
+  api_receipt,
 } from "@sleet-js/fastnear-explorer-api-client";
 
 // the recent blocks
@@ -61,9 +84,65 @@ console.log(txs.transactions[0].transaction.actions);
 const history = await api_account({ account_id: "sleet.near", limit: 50 });
 console.log(history.account_txs, history.resume_token);
 
+// one receipt and the transaction that made it
+const receipt = await api_receipt({
+  receipt_id: "96F2anuMy9WXVgRvpkh9ALbtRqPMomcEYxzuaCryXEjW",
+});
+```
+
+### the v1 api
+
+```ts
+import {
+  api_account_full,
+  api_account_ft,
+  api_account_nft,
+  api_account_staking,
+  api_account_contracts,
+  api_public_key,
+  api_token_holders,
+  api_status,
+  api_health,
+} from "@sleet-js/fastnear-explorer-api-client";
+
 // the account overview — balance, tokens, nfts, pools
 const account = await api_account_full({ account_id: "near" });
-console.log(account?.state?.balance);
+console.log(account?.state?.balance, account?.tokens.length);
+
+// the granular slices of the same thing
+const ft = await api_account_ft({ account_id: "near" });
+const nft = await api_account_nft({ account_id: "near" });
+const staking = await api_account_staking({ account_id: "near" });
+
+// the lighter v0 paths — contract ids only
+const ids = await api_account_contracts({
+  account_id: "near",
+  kind: "ft",
+});
+console.log(ids?.contract_ids);
+
+// WHICH ACCOUNTS SHARE THIS KEY?
+const lookup = await api_public_key({
+  public_key: "ed25519:6mtSNkJ1MjvNpc7sL6KAV6HykPhRrLcqv9DoYRAyKju3",
+});
+console.log(lookup.account_ids);
+
+// add include_all to also catch limited-access (function-call) keys
+const all = await api_public_key({
+  public_key: "ed25519:6mtSNkJ1MjvNpc7sL6KAV6HykPhRrLcqv9DoYRAyKju3",
+  include_all: true,
+});
+
+// the top holders of a token
+const holders = await api_token_holders({ token_id: "wrap.near" });
+console.log(holders.accounts.length, holders.accounts[0]);
+
+// is the indexer keeping up?
+const status = await api_status();
+console.log(status.sync_block_height, status.sync_latency_sec);
+
+const health = await api_health();
+console.log(health.status);
 ```
 
 every endpoint takes one options object. the network goes in `config`:

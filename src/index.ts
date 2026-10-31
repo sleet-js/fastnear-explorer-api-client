@@ -19,7 +19,14 @@
 
 // --- configuration ------------------------------------------------
 export { ENDPOINTS } from "./stuff/ENDPOINTS";
-export { ENDPOINT_PATHS, type ENDPOINT_KEY } from "./stuff/ENDPOINT_PATHS";
+export {
+  TX_ENDPOINT_PATHS,
+  type TX_ENDPOINT_KEY,
+} from "./stuff/TX_ENDPOINT_PATHS";
+export {
+  V1_ENDPOINT_PATHS,
+  type V1_ENDPOINT_KEY,
+} from "./stuff/V1_ENDPOINT_PATHS";
 export {
   DEFAULT_CONFIG,
   DEFAULT_NETWORK,
@@ -30,18 +37,37 @@ export { create_api_error, type API_ERROR } from "./stuff/API_ERROR";
 export type { API_CLIENT_CONFIG } from "./stuff/API_CLIENT_CONFIG";
 export type { NETWORK_ID as NETWORK } from "./types/NETWORK_ID";
 
-// --- endpoints ----------------------------------------------------
-export { api_blocks } from "./fun/API_BLOCKS";
-export { api_block } from "./fun/API_BLOCK";
+// --- the tx api ---------------------------------------------------
+export { api_blocks } from "./tx/API_BLOCKS";
+export { api_block } from "./tx/API_BLOCK";
 export {
   api_transactions,
   TRANSACTIONS_BATCH_SIZE,
-} from "./fun/API_TRANSACTIONS";
-export { api_account } from "./fun/API_ACCOUNT";
-export { api_receipt } from "./fun/API_RECEIPT";
-export { api_account_full } from "./fun/API_ACCOUNT_FULL";
-export { api_rpc_query } from "./fun/API_RPC_QUERY";
-export { api_rpc_call_function } from "./fun/API_RPC_CALL_FUNCTION";
+} from "./tx/API_TRANSACTIONS";
+export { api_account } from "./tx/API_ACCOUNT";
+export { api_receipt } from "./tx/API_RECEIPT";
+
+// --- the v1 api ---------------------------------------------------
+export { api_health } from "./v1/API_HEALTH";
+export { api_status } from "./v1/API_STATUS";
+export { api_account_full } from "./v1/API_ACCOUNT_FULL";
+export { api_account_ft } from "./v1/API_ACCOUNT_FT";
+export { api_account_nft } from "./v1/API_ACCOUNT_NFT";
+export { api_account_staking } from "./v1/API_ACCOUNT_STAKING";
+export {
+  api_account_contracts,
+  type ACCOUNT_CONTRACT_KIND,
+} from "./v1/API_ACCOUNT_CONTRACTS";
+export { api_account_staking_ids } from "./v1/API_ACCOUNT_STAKING_IDS";
+export {
+  api_public_key,
+  type API_PUBLIC_KEY_PARAMS_EXTENDED,
+} from "./v1/API_PUBLIC_KEY";
+export { api_token_holders } from "./v1/API_TOKEN_HOLDERS";
+
+// --- the rpc node -------------------------------------------------
+export { api_rpc_query } from "./v1/API_RPC_QUERY";
+export { api_rpc_call_function } from "./v1/API_RPC_CALL_FUNCTION";
 
 // --- the parser ---------------------------------------------------
 export { parse_transaction } from "./parse/parse_transaction";
@@ -155,5 +181,18 @@ export type { API_ACCOUNT_PARAMS } from "./types/API_ACCOUNT_PARAMS";
 export type { API_RECEIPT_RESPONSE } from "./types/API_RECEIPT_RESPONSE";
 export type { API_RECEIPT_PARAMS } from "./types/API_RECEIPT_PARAMS";
 export type { API_ACCOUNT_FULL_PARAMS } from "./types/API_ACCOUNT_FULL_PARAMS";
+export type { API_ACCOUNT_TOKENS_PARAMS } from "./types/API_ACCOUNT_TOKENS_PARAMS";
+export type { API_PUBLIC_KEY_PARAMS } from "./types/API_PUBLIC_KEY_PARAMS";
+export type { API_TOKEN_HOLDERS_PARAMS } from "./types/API_TOKEN_HOLDERS_PARAMS";
+export type { API_STATUS_PARAMS } from "./types/API_STATUS_PARAMS";
+export type { HEALTH_RESPONSE } from "./types/HEALTH_RESPONSE";
+export type { API_STATUS_RESPONSE } from "./types/API_STATUS_RESPONSE";
+export type { PUBLIC_KEY_LOOKUP_RESPONSE } from "./types/PUBLIC_KEY_LOOKUP_RESPONSE";
+export type { ACCOUNT_CONTRACTS_RESPONSE } from "./types/ACCOUNT_CONTRACTS_RESPONSE";
+export type { ACCOUNT_STAKING_IDS_RESPONSE } from "./types/ACCOUNT_STAKING_IDS_RESPONSE";
+export type { ACCOUNT_FT_RESPONSE } from "./types/ACCOUNT_FT_RESPONSE";
+export type { ACCOUNT_NFT_RESPONSE } from "./types/ACCOUNT_NFT_RESPONSE";
+export type { ACCOUNT_STAKING_RESPONSE } from "./types/ACCOUNT_STAKING_RESPONSE";
+export type { TOKEN_HOLDERS_RESPONSE } from "./types/TOKEN_HOLDERS_RESPONSE";
 // ========================================
 // copyright 2026 by sleet.near

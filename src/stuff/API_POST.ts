@@ -17,10 +17,10 @@ import { create_api_error } from "./API_ERROR";
 import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG";
 import { api_base_url } from "./API_BASE_URL";
 import { api_retry } from "./API_RETRY";
-import { ENDPOINT_PATHS, type ENDPOINT_KEY } from "./ENDPOINT_PATHS";
+import { TX_ENDPOINT_PATHS, type TX_ENDPOINT_KEY } from "./TX_ENDPOINT_PATHS";
 
 export interface API_POST_PARAMS {
-  endpoint: ENDPOINT_KEY;
+  endpoint: TX_ENDPOINT_KEY;
   body?: Record<string, unknown>;
   config?: API_CLIENT_CONFIG;
   signal?: AbortSignal;
@@ -39,7 +39,7 @@ export async function api_post<t = unknown>({
   retries = 3,
 }: API_POST_PARAMS): Promise<t> {
   const base_url = api_base_url("tx", config);
-  const path = ENDPOINT_PATHS[endpoint];
+  const path = TX_ENDPOINT_PATHS[endpoint];
   const url = `${base_url}${path}`;
 
   return api_retry(

@@ -1,13 +1,25 @@
 # fastnear-explorer-api-client — usage guide
 
-a typed client for the [fastnear explorer api](https://github.com/fastnear/explorer-api),
-with a pure transaction parser.
+a typed client for the fastnear apis, with a pure transaction parser.
 
-- the api surface — `src/fun/`, one file per endpoint
+- the tx api — `src/tx/`, one file per endpoint
+- the v1 api — `src/v1/`, one file per endpoint
 - the parser — `src/parse/`, one master entry point plus a plugin seam
 - the types — `src/types/`, one type per file, `SCREAMING_SNAKE_CASE`
 
 functions are `snake_case`. types are `SCREAMING_SNAKE_CASE`.
+
+## the three services
+
+| service | host | repo |
+|---|---|---|
+| tx api | `tx.main.fastnear.com` | [fastnear/explorer-api](https://github.com/fastnear/explorer-api) |
+| v1 api | `api.fastnear.com` | [fastnear/fastnear-api-server-rs](https://github.com/fastnear/fastnear-api-server-rs) |
+| rpc node | `rpc.mainnet.fastnear.com` | [fastnear/nearcore](https://github.com/fastnear/nearcore) — the standard NEAR node, not a fastnear service |
+
+each covers something the others do not. the tx api has the transaction
+graph, the v1 api has aggregated account state, the rpc node has
+contract internals.
 
 ---
 
@@ -75,6 +87,9 @@ const blocks = await api_blocks({
 |---|---|---|---|
 | mainnet | `https://tx.main.fastnear.com` | `https://api.fastnear.com` | `https://rpc.mainnet.fastnear.com` |
 | testnet | `https://tx.test.fastnear.com` | `https://test.api.fastnear.com` | `https://rpc.testnet.fastnear.com` |
+
+the endpoint paths are written down once each, in
+`src/stuff/TX_ENDPOINT_PATHS.ts` and `src/stuff/V1_ENDPOINT_PATHS.ts`.
 
 ---
 
@@ -206,6 +221,116 @@ if (account !== null) {
 ```
 
 an account that does not exist comes back as `null`.
+
+### api_account_ft, api_account_nft, api_account_staking
+
+the granular slices of the overview. same rows, without the rest of
+the account.
+
+```typescript
+const ft = await api_account_ft({ account_id: "near" });
+const nft = await api_account_nft({ account_id: "near" });
+const staking = await api_account_staking({ account_id: "near" });
+
+console.log(ft?.tokens.length, nft?.tokens.length, staking?.pools.length);
+```
+
+all three come back as `null` for an account that does not exist.
+
+### api_account_contracts, api_account_staking_ids
+
+the lighter v0 paths — ids only, no balances.
+
+```typescript
+const ft_ids = await api_account_contracts({
+  account_id: "near",
+  kind: "ft",
+});
+console.log(ft_ids?.contract_ids);
+
+const nft_ids = await api_account_contracts({
+  account_id: "near",
+  kind: "nft",
+});
+
+const pool_ids = await api_account_staking_ids({ account_id: "near" });
+```
+
+`kind` is `"ft"` or `"nft"`.
+
+### api_public_key
+
+**which accounts share this public key?**
+
+```typescript
+import { api_public_key } from "@sleet-js/fastnear-explorer-api-client";
+
+const lookup = await api_public_key({
+  public_key: "ed25519:6mtSNkJ1MjvNpc7sL6KAV6HykPhRrLcqv9DoYRAyKju3",
+});
+
+console.log(lookup.account_ids);
+```
+
+by default this answers with the accounts that registered the key at
+**full access**. to also catch the accounts that hold it as a limited
+(function-call) access key, add `include_all`:
+
+```typescript
+const all = await api_public_key({
+  public_key: "ed25519:6mtSNkJ1MjvNpc7sL6KAV6HykPhRrLcqv9DoYRAyKju3",
+  include_all: true,
+});
+```
+
+the key may be any of the forms the protocol uses:
+
+```
+ed25519:…   secp256k1:…   ml-dsa-65:…   ml-dsa-65-hash:…
+```
+
+a key no account has registered answers with an empty list — that is
+not an error.
+
+the legacy v0 path is available too:
+
+```typescript
+const legacy = await api_public_key({
+  public_key: "ed25519:...",
+  legacy: true,
+});
+```
+
+### api_token_holders
+
+the top holders of a fungible token, biggest balance first. the api
+answers with up to 100 accounts.
+
+```typescript
+const holders = await api_token_holders({ token_id: "wrap.near" });
+
+console.log(holders.token_id, holders.accounts.length);
+console.log(holders.accounts[0]);
+```
+
+`balance` is a decimal string of the token's smallest unit — it does
+not fit in a js number.
+
+### api_status, api_health
+
+how far the indexer has got, and whether the service is up.
+
+```typescript
+const status = await api_status();
+console.log(status.sync_block_height, status.sync_latency_sec);
+
+const health = await api_health();
+console.log(health.status);
+```
+
+`status` also has `sync_balance_block_height` — the height the
+**balances** are indexed to. balances lag the blocks, so this is the
+number to check before trusting a balance.
 
 ### api_rpc_query
 
@@ -541,12 +666,16 @@ bun bin/parse_custom_plugin.ts <hash>
 
 ## notes on the api
 
-- every v0 endpoint is a POST with a json body
-- the api caps `/v0/blocks` at 100 rows
+- every tx api endpoint is a POST with a json body
+- every v1 api endpoint is a GET with the parameters in the path
+- the tx api caps `/v0/blocks` at 100 rows
 - `/v0/transactions` takes at most 20 hashes per call
-- the api answers failures with plain text
+- the tx api answers failures with plain text
 - the api rate limits — the client retries with a backoff
 - `block_receipts` is always present in a block response
+- the v1 api answers 404 for an account that does not exist, which
+  comes back as `null` rather than an exception
+- the v1 api needs no api key for any of these endpoints
 - `CreateAccount` arrives as a bare string, every other action arrives
   as a single-key object
 - an event's `data` is usually a list of objects, but it can be a

@@ -1,13 +1,13 @@
 # bin
 
-runnable bins for the fastnear explorer api client. these are how the
-package is verified — there are no test files in it.
+runnable bins for the fastnear apis client. these are how the package
+is verified — there are no test files in it.
 
 all commands run from the project root.
 
 ---
 
-## api bins
+## tx api bins
 
 one bin per endpoint.
 
@@ -68,6 +68,10 @@ POST /v0/receipt — one receipt and the transaction that made it.
 bun bin/api_receipt.ts 96F2anuMy9WXVgRvpkh9ALbtRqPMomcEYxzuaCryXEjW
 ```
 
+---
+
+## v1 api bins
+
 ### api_account_full
 
 GET /v1/account/{id}/full — the account overview. balance, storage,
@@ -76,6 +80,49 @@ tokens, nft contracts, staking pools.
 ```sh
 bun bin/api_account_full.ts near
 bun bin/api_account_full.ts sleet.near --json
+```
+
+### api_account_tokens
+
+the granular slices of the overview, and the lighter v0 paths.
+
+```sh
+bun bin/api_account_tokens.ts near --ft
+bun bin/api_account_tokens.ts near --nft
+bun bin/api_account_tokens.ts near --staking
+bun bin/api_account_tokens.ts near --ft --ids
+```
+
+`--ids` uses the v0 path — contract ids only, no balances.
+
+### api_public_key
+
+which accounts share a public key.
+
+```sh
+bun bin/api_public_key.ts ed25519:6mtSNkJ1MjvNpc7sL6KAV6HykPhRrLcqv9DoYRAyKju3
+bun bin/api_public_key.ts ed25519:11111111111111111111111111111111 --all
+```
+
+`--all` also catches the limited-access (function-call) keys.
+`--legacy` uses the v0 path.
+
+### api_token_holders
+
+the top holders of a fungible token.
+
+```sh
+bun bin/api_token_holders.ts wrap.near
+bun bin/api_token_holders.ts wrap.near --top 10
+```
+
+### api_status
+
+how far the indexer has got, and whether the service is up.
+
+```sh
+bun bin/api_status.ts
+bun bin/api_status.ts --health
 ```
 
 ### api_rpc_call_function
