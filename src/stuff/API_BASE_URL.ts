@@ -8,9 +8,9 @@
 //   "rpc" — the json-rpc node
 // ========================================
 
-import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG";
-import { ENDPOINTS } from "./ENDPOINTS";
-import type { NETWORK_ID } from "../types/shared/NETWORK_ID";
+import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG.js";
+import { ENDPOINTS } from "./ENDPOINTS.js";
+import type { NETWORK_ID } from "../types/shared/NETWORK_ID.js";
 
 export type SERVICE = "tx" | "api" | "rpc";
 

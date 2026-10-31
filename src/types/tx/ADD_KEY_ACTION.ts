@@ -5,7 +5,7 @@
 // the public key is "{curve}:{base58}" — see PARSED_PUBLIC_KEY.
 // ========================================
 
-import type { ACCESS_KEY } from "./ACCESS_KEY";
+import type { ACCESS_KEY } from "./ACCESS_KEY.js";
 
 export interface ADD_KEY_ACTION {
   public_key: string;

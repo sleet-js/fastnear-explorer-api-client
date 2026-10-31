@@ -23,8 +23,8 @@ import {
   decode_bytes,
   encode_base58,
   encode_base64,
-} from "../src/index";
-import { split_argv } from "./fun/split_argv";
+} from "../src/index.js";
+import { split_argv } from "./fun/split_argv.js";
 
 // --- FLAGS ---------------------------------------------------------
 const BOOLEAN_FLAGS: string[] = [];

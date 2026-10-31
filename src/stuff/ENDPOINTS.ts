@@ -3,7 +3,7 @@
 // the hosts for every fastnear service this client talks to.
 // ========================================
 
-import type { NETWORK_ID } from "../types/shared/NETWORK_ID";
+import type { NETWORK_ID } from "../types/shared/NETWORK_ID.js";
 
 export const ENDPOINTS = {
   mainnet: {

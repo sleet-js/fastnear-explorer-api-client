@@ -3,7 +3,7 @@
 // the outcome of running a transaction.
 // ========================================
 
-import type { RECEIPT_OUTCOME } from "./RECEIPT_OUTCOME";
+import type { RECEIPT_OUTCOME } from "./RECEIPT_OUTCOME.js";
 
 export interface EXECUTION_OUTCOME {
   block_hash: string;

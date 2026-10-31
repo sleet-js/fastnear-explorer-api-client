@@ -8,7 +8,7 @@
 // receipts live in `data_receipts[]`.
 // ========================================
 
-import type { ACTION } from "./ACTION";
+import type { ACTION } from "./ACTION.js";
 
 export interface RECEIPT {
   block_height: number;

@@ -8,8 +8,8 @@
 // returns null when the input is not valid base64.
 // ========================================
 
-import { decode_base64_bytes } from "./decode_base64";
-import { encode_base58 } from "./encode_base58";
+import { decode_base64_bytes } from "./decode_base64.js";
+import { encode_base58 } from "./encode_base58.js";
 
 const BASE64_CHARS = /^[A-Za-z0-9+/]*={0,2}$/;
 

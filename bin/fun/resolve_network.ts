@@ -6,7 +6,7 @@
 // and `--network testnet` as the explicit form.
 // ========================================
 
-import type { NETWORK_ID } from "../../src/types/shared/NETWORK_ID";
+import type { NETWORK_ID } from "../../src/types/shared/NETWORK_ID.js";
 
 export function resolve_network(
   flags: Map<string, string>,

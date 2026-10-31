@@ -11,9 +11,9 @@
 //   bun bin/api_receipt.ts 96F2anuMy9WXVgRvpkh9ALbtRqPMomcEYxzuaCryXEjW
 // ========================================
 
-import { api_receipt } from "../src/index";
-import { resolve_network } from "./fun/resolve_network";
-import { split_argv } from "./fun/split_argv";
+import { api_receipt } from "../src/index.js";
+import { resolve_network } from "./fun/resolve_network.js";
+import { split_argv } from "./fun/split_argv.js";
 
 // --- FLAGS ---------------------------------------------------------
 const BOOLEAN_FLAGS = ["--json", "--testnet"];

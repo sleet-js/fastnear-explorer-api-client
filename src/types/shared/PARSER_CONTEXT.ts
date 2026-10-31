@@ -11,8 +11,8 @@
 // package does not model.
 // ========================================
 
-import type { ACTION } from "../tx/ACTION";
-import type { TRANSACTION_DETAIL } from "../tx/TRANSACTION_DETAIL";
+import type { ACTION } from "../tx/ACTION.js";
+import type { TRANSACTION_DETAIL } from "../tx/TRANSACTION_DETAIL.js";
 
 export interface PARSER_CONTEXT {
   signer_id: string;

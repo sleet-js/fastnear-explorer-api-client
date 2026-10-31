@@ -22,9 +22,9 @@ import {
   format_near,
   parse_transaction,
   time_ago,
-} from "../src/index";
-import { resolve_network } from "./fun/resolve_network";
-import { split_argv } from "./fun/split_argv";
+} from "../src/index.js";
+import { resolve_network } from "./fun/resolve_network.js";
+import { split_argv } from "./fun/split_argv.js";
 
 // --- FLAGS ---------------------------------------------------------
 const BOOLEAN_FLAGS = ["--json", "--full", "--testnet"];

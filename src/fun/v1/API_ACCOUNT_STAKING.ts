@@ -7,9 +7,9 @@
 // the rest of the account.
 // ========================================
 
-import { api_get_path } from "../../stuff/API_GET_PATH";
-import type { ACCOUNT_STAKING_RESPONSE } from "../../types/v1/ACCOUNT_STAKING_RESPONSE";
-import type { API_ACCOUNT_TOKENS_PARAMS } from "../../types/v1/API_ACCOUNT_TOKENS_PARAMS";
+import { api_get_path } from "../../stuff/API_GET_PATH.js";
+import type { ACCOUNT_STAKING_RESPONSE } from "../../types/v1/ACCOUNT_STAKING_RESPONSE.js";
+import type { API_ACCOUNT_TOKENS_PARAMS } from "../../types/v1/API_ACCOUNT_TOKENS_PARAMS.js";
 
 export async function api_account_staking(
   params: API_ACCOUNT_TOKENS_PARAMS,

@@ -3,7 +3,7 @@
 // the execution outcome of one receipt.
 // ========================================
 
-import type { EXECUTION_STATUS } from "./EXECUTION_STATUS";
+import type { EXECUTION_STATUS } from "./EXECUTION_STATUS.js";
 
 export interface RECEIPT_OUTCOME {
   logs: string[];

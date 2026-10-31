@@ -11,7 +11,7 @@
 // another contract's token.
 // ========================================
 
-import type { TOKEN_TYPE } from "./TOKEN_TYPE";
+import type { TOKEN_TYPE } from "./TOKEN_TYPE.js";
 
 export interface TRANSFER_INFO {
   from: string | null;

@@ -6,7 +6,7 @@
 // number. `priority_fee` is a number.
 // ========================================
 
-import type { ACTION } from "./ACTION";
+import type { ACTION } from "./ACTION.js";
 
 export interface RAW_TRANSACTION {
   signer_id: string;

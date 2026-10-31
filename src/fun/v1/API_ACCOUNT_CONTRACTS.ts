@@ -9,9 +9,9 @@
 // `kind` picks which one: "ft" or "nft".
 // ========================================
 
-import { api_get_path } from "../../stuff/API_GET_PATH";
-import type { ACCOUNT_CONTRACTS_RESPONSE } from "../../types/v1/ACCOUNT_CONTRACTS_RESPONSE";
-import type { API_ACCOUNT_TOKENS_PARAMS } from "../../types/v1/API_ACCOUNT_TOKENS_PARAMS";
+import { api_get_path } from "../../stuff/API_GET_PATH.js";
+import type { ACCOUNT_CONTRACTS_RESPONSE } from "../../types/v1/ACCOUNT_CONTRACTS_RESPONSE.js";
+import type { API_ACCOUNT_TOKENS_PARAMS } from "../../types/v1/API_ACCOUNT_TOKENS_PARAMS.js";
 
 export type ACCOUNT_CONTRACT_KIND = "ft" | "nft";
 

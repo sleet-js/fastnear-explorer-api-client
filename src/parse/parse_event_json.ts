@@ -10,7 +10,7 @@
 // broken. a broken log must not take down the whole parse.
 // ========================================
 
-import type { EVENT_JSON } from "../types/shared/EVENT_JSON";
+import type { EVENT_JSON } from "../types/shared/EVENT_JSON.js";
 
 export const EVENT_JSON_PREFIX = "EVENT_JSON:";
 

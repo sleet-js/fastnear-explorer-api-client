@@ -13,8 +13,8 @@
 // `overrides: true` take over from them.
 // ========================================
 
-import type { PARSER_REGISTRY } from "./PARSER_REGISTRY";
-import type { TRANSFER_PARSER } from "./TRANSFER_PARSER";
+import type { PARSER_REGISTRY } from "./PARSER_REGISTRY.js";
+import type { TRANSFER_PARSER } from "./TRANSFER_PARSER.js";
 
 export interface PARSER_OPTIONS {
   plugins?: TRANSFER_PARSER[];

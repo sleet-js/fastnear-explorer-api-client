@@ -23,10 +23,10 @@ import {
   collect_events,
   parse_transaction,
   TRANSACTIONS_BATCH_SIZE,
-} from "../src/index";
-import { resolve_network } from "./fun/resolve_network";
-import { split_argv } from "./fun/split_argv";
-import { throttle } from "./fun/throttle";
+} from "../src/index.js";
+import { resolve_network } from "./fun/resolve_network.js";
+import { split_argv } from "./fun/split_argv.js";
+import { throttle } from "./fun/throttle.js";
 
 // --- FLAGS ---------------------------------------------------------
 const BOOLEAN_FLAGS = ["--standards", "--testnet"];

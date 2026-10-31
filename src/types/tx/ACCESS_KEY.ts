@@ -3,7 +3,7 @@
 // one access key on an account.
 // ========================================
 
-import type { ACCESS_KEY_PERMISSION } from "./ACCESS_KEY_PERMISSION";
+import type { ACCESS_KEY_PERMISSION } from "./ACCESS_KEY_PERMISSION.js";
 
 export interface ACCESS_KEY {
   nonce: number;

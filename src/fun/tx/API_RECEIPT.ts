@@ -7,9 +7,9 @@
 // its outcome, look the tx up with api_transactions.
 // ========================================
 
-import { api_post } from "../../stuff/API_POST";
-import type { API_RECEIPT_PARAMS } from "../../types/tx/API_RECEIPT_PARAMS";
-import type { API_RECEIPT_RESPONSE } from "../../types/tx/API_RECEIPT_RESPONSE";
+import { api_post } from "../../stuff/API_POST.js";
+import type { API_RECEIPT_PARAMS } from "../../types/tx/API_RECEIPT_PARAMS.js";
+import type { API_RECEIPT_RESPONSE } from "../../types/tx/API_RECEIPT_RESPONSE.js";
 
 export async function api_receipt(
   params: API_RECEIPT_PARAMS,

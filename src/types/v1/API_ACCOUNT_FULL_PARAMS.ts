@@ -3,7 +3,7 @@
 // what GET /v1/account/{id}/full takes.
 // ========================================
 
-import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG";
+import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG.js";
 
 export interface API_ACCOUNT_FULL_PARAMS {
   account_id: string;

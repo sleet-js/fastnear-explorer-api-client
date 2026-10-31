@@ -9,9 +9,9 @@
 // with an extra plugin rather than changing this one.
 // ========================================
 
-import { create_parser_registry } from "./create_parser_registry";
-import { DEFAULT_PLUGINS } from "../plugins/DEFAULT_PLUGINS";
-import type { PARSER_REGISTRY } from "../../types/shared/PARSER_REGISTRY";
+import { create_parser_registry } from "./create_parser_registry.js";
+import { DEFAULT_PLUGINS } from "../plugins/DEFAULT_PLUGINS.js";
+import type { PARSER_REGISTRY } from "../../types/shared/PARSER_REGISTRY.js";
 
 export const DEFAULT_PARSER_REGISTRY: PARSER_REGISTRY = Object.freeze(
   create_parser_registry(DEFAULT_PLUGINS),

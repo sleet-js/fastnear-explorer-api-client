@@ -6,8 +6,8 @@
 // the same shape a block listing carries.
 // ========================================
 
-import type { RECEIPT_ROW } from "./RECEIPT_ROW";
-import type { TRANSACTION_DETAIL } from "./TRANSACTION_DETAIL";
+import type { RECEIPT_ROW } from "./RECEIPT_ROW.js";
+import type { TRANSACTION_DETAIL } from "./TRANSACTION_DETAIL.js";
 
 export interface API_RECEIPT_RESPONSE {
   receipt: RECEIPT_ROW | null;

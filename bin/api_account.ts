@@ -17,10 +17,10 @@
 //   bun bin/api_account.ts sleet.near --signer --success
 // ========================================
 
-import { api_account } from "../src/index";
-import { check_limit } from "./fun/check_limit";
-import { resolve_network } from "./fun/resolve_network";
-import { split_argv } from "./fun/split_argv";
+import { api_account } from "../src/index.js";
+import { check_limit } from "./fun/check_limit.js";
+import { resolve_network } from "./fun/resolve_network.js";
+import { split_argv } from "./fun/split_argv.js";
 
 // --- FLAGS ---------------------------------------------------------
 const BOOLEAN_FLAGS = [

@@ -5,7 +5,7 @@
 // at most 20 hashes per call — the api rejects more.
 // ========================================
 
-import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG";
+import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG.js";
 
 export interface API_TRANSACTIONS_PARAMS {
   tx_hashes: string[];

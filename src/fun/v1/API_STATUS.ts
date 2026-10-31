@@ -10,9 +10,9 @@
 // before trusting a balance.
 // ========================================
 
-import { api_get_path_required } from "../../stuff/API_GET_PATH";
-import type { API_STATUS_PARAMS } from "../../types/v1/API_STATUS_PARAMS";
-import type { API_STATUS_RESPONSE } from "../../types/v1/API_STATUS_RESPONSE";
+import { api_get_path_required } from "../../stuff/API_GET_PATH.js";
+import type { API_STATUS_PARAMS } from "../../types/v1/API_STATUS_PARAMS.js";
+import type { API_STATUS_RESPONSE } from "../../types/v1/API_STATUS_RESPONSE.js";
 
 export async function api_status(
   params: API_STATUS_PARAMS = {},

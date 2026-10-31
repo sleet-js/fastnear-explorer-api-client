@@ -6,7 +6,7 @@
 // caller — a base58 key is safe, but the spec allows other forms.
 // ========================================
 
-import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG";
+import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG.js";
 
 export interface API_PUBLIC_KEY_PARAMS {
   public_key: string;

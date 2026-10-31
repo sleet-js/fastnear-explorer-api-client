@@ -53,23 +53,23 @@
 // transaction.
 // ========================================
 
-import { collect_events } from "./collect_events";
-import { parse_action } from "./parse_action";
-import { resolve_delegate_context } from "./resolve_delegate_context";
-import { resolve_success } from "./resolve_success";
-import { resolve_total_gas } from "./resolve_total_gas";
-import { create_parser_registry } from "./registry/create_parser_registry";
-import { DEFAULT_PARSER_REGISTRY } from "./registry/DEFAULT_PARSER_REGISTRY";
-import type { CUSTOM_TRANSFER } from "../types/shared/CUSTOM_TRANSFER";
-import type { NFT_TRANSFER_INFO } from "../types/shared/NFT_TRANSFER_INFO";
-import type { PARSE_RESULT } from "../types/shared/PARSE_RESULT";
-import type { PARSED_ACTION } from "../types/shared/PARSED_ACTION";
-import type { PARSER_CONTEXT } from "../types/shared/PARSER_CONTEXT";
-import type { PARSER_OPTIONS } from "../types/shared/PARSER_OPTIONS";
-import type { PARSER_REGISTRY } from "../types/shared/PARSER_REGISTRY";
-import type { TRANSACTION_DETAIL } from "../types/tx/TRANSACTION_DETAIL";
-import type { TRANSFER_INFO } from "../types/shared/TRANSFER_INFO";
-import type { TRANSFER_PARSER } from "../types/shared/TRANSFER_PARSER";
+import { collect_events } from "./collect_events.js";
+import { parse_action } from "./parse_action.js";
+import { resolve_delegate_context } from "./resolve_delegate_context.js";
+import { resolve_success } from "./resolve_success.js";
+import { resolve_total_gas } from "./resolve_total_gas.js";
+import { create_parser_registry } from "./registry/create_parser_registry.js";
+import { DEFAULT_PARSER_REGISTRY } from "./registry/DEFAULT_PARSER_REGISTRY.js";
+import type { CUSTOM_TRANSFER } from "../types/shared/CUSTOM_TRANSFER.js";
+import type { NFT_TRANSFER_INFO } from "../types/shared/NFT_TRANSFER_INFO.js";
+import type { PARSE_RESULT } from "../types/shared/PARSE_RESULT.js";
+import type { PARSED_ACTION } from "../types/shared/PARSED_ACTION.js";
+import type { PARSER_CONTEXT } from "../types/shared/PARSER_CONTEXT.js";
+import type { PARSER_OPTIONS } from "../types/shared/PARSER_OPTIONS.js";
+import type { PARSER_REGISTRY } from "../types/shared/PARSER_REGISTRY.js";
+import type { TRANSACTION_DETAIL } from "../types/tx/TRANSACTION_DETAIL.js";
+import type { TRANSFER_INFO } from "../types/shared/TRANSFER_INFO.js";
+import type { TRANSFER_PARSER } from "../types/shared/TRANSFER_PARSER.js";
 
 export function parse_transaction(
   tx: TRANSACTION_DETAIL,

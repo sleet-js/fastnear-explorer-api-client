@@ -13,9 +13,9 @@
 //   bun bin/api_block.ts 96pvkznpNepxKQJqtuX2mwYFneQuMc3REq2L85qko2Td
 // ========================================
 
-import { api_block } from "../src/index";
-import { resolve_network } from "./fun/resolve_network";
-import { split_argv } from "./fun/split_argv";
+import { api_block } from "../src/index.js";
+import { resolve_network } from "./fun/resolve_network.js";
+import { split_argv } from "./fun/split_argv.js";
 
 // --- FLAGS ---------------------------------------------------------
 const BOOLEAN_FLAGS = ["--transactions", "--receipts", "--testnet"];

@@ -3,7 +3,7 @@
 // what POST /v0/receipt takes.
 // ========================================
 
-import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG";
+import type { API_CLIENT_CONFIG } from "../../stuff/API_CLIENT_CONFIG.js";
 
 export interface API_RECEIPT_PARAMS {
   receipt_id: string;

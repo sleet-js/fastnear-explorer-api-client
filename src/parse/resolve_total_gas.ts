@@ -10,7 +10,7 @@
 // values fit in a js number without loss.
 // ========================================
 
-import type { TRANSACTION_DETAIL } from "../types/tx/TRANSACTION_DETAIL";
+import type { TRANSACTION_DETAIL } from "../types/tx/TRANSACTION_DETAIL.js";
 
 export function resolve_total_gas(tx: TRANSACTION_DETAIL): number {
   let total = tx.execution_outcome.outcome.gas_burnt;

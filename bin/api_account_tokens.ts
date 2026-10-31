@@ -21,9 +21,9 @@ import {
   api_account_nft,
   api_account_staking,
   api_account_staking_ids,
-} from "../src/index";
-import { resolve_network } from "./fun/resolve_network";
-import { split_argv } from "./fun/split_argv";
+} from "../src/index.js";
+import { resolve_network } from "./fun/resolve_network.js";
+import { split_argv } from "./fun/split_argv.js";
 
 // --- FLAGS ---------------------------------------------------------
 const BOOLEAN_FLAGS = ["--ft", "--nft", "--staking", "--ids", "--testnet"];

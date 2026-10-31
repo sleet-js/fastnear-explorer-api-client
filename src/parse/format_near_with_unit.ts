@@ -9,7 +9,7 @@
 // a single yocto is shown as "1 yocto", never as "0 NEAR".
 // ========================================
 
-import { format_near } from "./format_near";
+import { format_near } from "./format_near.js";
 
 export function format_near_with_unit(
   amount: string | undefined | null,

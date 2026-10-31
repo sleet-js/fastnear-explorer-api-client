@@ -16,12 +16,12 @@
 // on the transfer so a ui can tell them apart.
 // ========================================
 
-import { is_event_data_object } from "../is_event_data_object";
-import { normalize_event_data } from "../normalize_event_data";
-import { normalize_owner } from "../normalize_owner";
-import type { PARSER_CONTEXT } from "../../types/shared/PARSER_CONTEXT";
-import type { TRANSFER_INFO } from "../../types/shared/TRANSFER_INFO";
-import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER";
+import { is_event_data_object } from "../is_event_data_object.js";
+import { normalize_event_data } from "../normalize_event_data.js";
+import { normalize_owner } from "../normalize_owner.js";
+import type { PARSER_CONTEXT } from "../../types/shared/PARSER_CONTEXT.js";
+import type { TRANSFER_INFO } from "../../types/shared/TRANSFER_INFO.js";
+import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER.js";
 
 export const plugin_nep245_transfer: TRANSFER_PARSER = {
   id: "builtin.nep245-transfer",

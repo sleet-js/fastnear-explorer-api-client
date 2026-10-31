@@ -23,9 +23,9 @@
 //   bun bin/api_log_format.ts --quiet
 // ========================================
 
-import { api_status } from "../src/index";
-import { resolve_network } from "./fun/resolve_network";
-import { split_argv } from "./fun/split_argv";
+import { api_status } from "../src/index.js";
+import { resolve_network } from "./fun/resolve_network.js";
+import { split_argv } from "./fun/split_argv.js";
 
 // --- FLAGS ---------------------------------------------------------
 const BOOLEAN_FLAGS = ["--quiet", "--testnet"];

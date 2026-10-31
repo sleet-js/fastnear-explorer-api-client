@@ -11,12 +11,12 @@
 // several tokens at once.
 // ========================================
 
-import { is_event_data_object } from "../is_event_data_object";
-import { normalize_event_data } from "../normalize_event_data";
-import { normalize_owner } from "../normalize_owner";
-import type { NFT_TRANSFER_INFO } from "../../types/shared/NFT_TRANSFER_INFO";
-import type { PARSER_CONTEXT } from "../../types/shared/PARSER_CONTEXT";
-import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER";
+import { is_event_data_object } from "../is_event_data_object.js";
+import { normalize_event_data } from "../normalize_event_data.js";
+import { normalize_owner } from "../normalize_owner.js";
+import type { NFT_TRANSFER_INFO } from "../../types/shared/NFT_TRANSFER_INFO.js";
+import type { PARSER_CONTEXT } from "../../types/shared/PARSER_CONTEXT.js";
+import type { TRANSFER_PARSER } from "../../types/shared/TRANSFER_PARSER.js";
 
 export const plugin_nep171_nft_transfer: TRANSFER_PARSER = {
   id: "builtin.nep171-nft-transfer",

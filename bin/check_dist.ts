@@ -6,7 +6,7 @@
 // A PACKAGE THAT BUILDS IS NOT A PACKAGE THAT WORKS. the tsc
 // compiler emits extensionless relative imports:
 //
-//     import { ENDPOINTS } from "./stuff/ENDPOINTS";
+//     import { ENDPOINTS } from "./stuff/ENDPOINTS.js";
 //
 // bun resolves that fine. node does NOT — its esm resolver needs the
 // full path with the extension. so a consumer who installs the

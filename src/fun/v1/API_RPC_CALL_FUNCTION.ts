@@ -12,11 +12,11 @@
 //   mt_metadata_base_by_token_id -> [{ name, symbol, decimals, icon }]
 // ========================================
 
-import { api_rpc_query } from "./API_RPC_QUERY";
-import { decode_bytes } from "../../parse/decode_bytes";
-import { encode_base64 } from "../../parse/encode_base64";
-import type { API_RPC_CALL_FUNCTION_PARAMS } from "../../types/v1/API_RPC_CALL_FUNCTION_PARAMS";
-import type { API_RPC_CALL_FUNCTION_RESULT } from "../../types/v1/API_RPC_CALL_FUNCTION_RESULT";
+import { api_rpc_query } from "./API_RPC_QUERY.js";
+import { decode_bytes } from "../../parse/decode_bytes.js";
+import { encode_base64 } from "../../parse/encode_base64.js";
+import type { API_RPC_CALL_FUNCTION_PARAMS } from "../../types/v1/API_RPC_CALL_FUNCTION_PARAMS.js";
+import type { API_RPC_CALL_FUNCTION_RESULT } from "../../types/v1/API_RPC_CALL_FUNCTION_RESULT.js";
 
 export async function api_rpc_call_function<t = unknown>(
   params: API_RPC_CALL_FUNCTION_PARAMS,

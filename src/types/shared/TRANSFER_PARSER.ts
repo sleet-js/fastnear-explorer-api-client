@@ -33,12 +33,12 @@
 // priority of 50 or lower to be sure you run first.
 // ========================================
 
-import type { CUSTOM_TRANSFER } from "./CUSTOM_TRANSFER";
-import type { EVENT_JSON } from "./EVENT_JSON";
-import type { NFT_TRANSFER_INFO } from "./NFT_TRANSFER_INFO";
-import type { PARSED_ACTION } from "./PARSED_ACTION";
-import type { PARSER_CONTEXT } from "./PARSER_CONTEXT";
-import type { TRANSFER_INFO } from "./TRANSFER_INFO";
+import type { CUSTOM_TRANSFER } from "./CUSTOM_TRANSFER.js";
+import type { EVENT_JSON } from "./EVENT_JSON.js";
+import type { NFT_TRANSFER_INFO } from "./NFT_TRANSFER_INFO.js";
+import type { PARSED_ACTION } from "./PARSED_ACTION.js";
+import type { PARSER_CONTEXT } from "./PARSER_CONTEXT.js";
+import type { TRANSFER_INFO } from "./TRANSFER_INFO.js";
 
 export interface TRANSFER_PARSER {
   id: string;

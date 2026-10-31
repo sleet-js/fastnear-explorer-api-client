@@ -6,7 +6,7 @@
 // it is null when the failure is not tied to one action.
 // ========================================
 
-import type { ERROR_KIND } from "./ERROR_KIND";
+import type { ERROR_KIND } from "./ERROR_KIND.js";
 
 export interface ACTION_ERROR {
   index: number | null;

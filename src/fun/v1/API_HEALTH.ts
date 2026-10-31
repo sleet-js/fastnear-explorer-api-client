@@ -5,9 +5,9 @@
 // this is the cheapest call there is — no parameters, no account.
 // ========================================
 
-import { api_get_path_required } from "../../stuff/API_GET_PATH";
-import type { API_STATUS_PARAMS } from "../../types/v1/API_STATUS_PARAMS";
-import type { HEALTH_RESPONSE } from "../../types/v1/HEALTH_RESPONSE";
+import { api_get_path_required } from "../../stuff/API_GET_PATH.js";
+import type { API_STATUS_PARAMS } from "../../types/v1/API_STATUS_PARAMS.js";
+import type { HEALTH_RESPONSE } from "../../types/v1/HEALTH_RESPONSE.js";
 
 export async function api_health(
   params: API_STATUS_PARAMS = {},

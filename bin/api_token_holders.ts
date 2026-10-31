@@ -12,9 +12,9 @@
 //   bun bin/api_token_holders.ts wrap.near --top 10
 // ========================================
 
-import { api_token_holders, format_token_amount } from "../src/index";
-import { resolve_network } from "./fun/resolve_network";
-import { split_argv } from "./fun/split_argv";
+import { api_token_holders, format_token_amount } from "../src/index.js";
+import { resolve_network } from "./fun/resolve_network.js";
+import { split_argv } from "./fun/split_argv.js";
 
 // --- FLAGS ---------------------------------------------------------
 const BOOLEAN_FLAGS = ["--testnet"];

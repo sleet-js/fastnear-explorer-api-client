@@ -8,9 +8,9 @@
 // `not_found_as_null` turns it into null.
 // ========================================
 
-import { create_api_error } from "./API_ERROR";
-import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG";
-import { api_retry } from "./API_RETRY";
+import { create_api_error } from "./API_ERROR.js";
+import type { API_CLIENT_CONFIG } from "./API_CLIENT_CONFIG.js";
+import { api_retry } from "./API_RETRY.js";
 
 export interface API_GET_PARAMS {
   url: string;

@@ -3,7 +3,7 @@
 // what POST /v0/transactions answered with.
 // ========================================
 
-import type { TRANSACTION_DETAIL } from "./TRANSACTION_DETAIL";
+import type { TRANSACTION_DETAIL } from "./TRANSACTION_DETAIL.js";
 
 export interface API_TRANSACTIONS_RESPONSE {
   transactions: TRANSACTION_DETAIL[];

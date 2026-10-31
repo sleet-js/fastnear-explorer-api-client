@@ -9,12 +9,12 @@
 // `raw` is the untouched transaction, so nothing is ever lost.
 // ========================================
 
-import type { CUSTOM_TRANSFER } from "./CUSTOM_TRANSFER";
-import type { NFT_TRANSFER_INFO } from "./NFT_TRANSFER_INFO";
-import type { PARSED_ACTION } from "./PARSED_ACTION";
-import type { RECEIPT_WITH_OUTCOME } from "../tx/RECEIPT_WITH_OUTCOME";
-import type { TRANSACTION_DETAIL } from "../tx/TRANSACTION_DETAIL";
-import type { TRANSFER_INFO } from "./TRANSFER_INFO";
+import type { CUSTOM_TRANSFER } from "./CUSTOM_TRANSFER.js";
+import type { NFT_TRANSFER_INFO } from "./NFT_TRANSFER_INFO.js";
+import type { PARSED_ACTION } from "./PARSED_ACTION.js";
+import type { RECEIPT_WITH_OUTCOME } from "../tx/RECEIPT_WITH_OUTCOME.js";
+import type { TRANSACTION_DETAIL } from "../tx/TRANSACTION_DETAIL.js";
+import type { TRANSFER_INFO } from "./TRANSFER_INFO.js";
 
 export interface PARSE_RESULT {
   hash: string;
