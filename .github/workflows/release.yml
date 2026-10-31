@@ -182,17 +182,22 @@ jobs:
           # npm view reads a cached packument, so a freshly published version
           # can stay invisible for minutes. This endpoint 404s until the
           # version is really live, and never serves a stale copy.
+          #
+          # the window is generous on purpose — the publish can take a few
+          # minutes to propagate through npm's cdn, and a release that
+          # actually worked should not be reported as a failure.
           ok=false
-          for _ in $(seq 1 30); do
+          for _ in $(seq 1 60); do
             if curl -sf -o /dev/null \
               "https://registry.npmjs.org/${PACKAGE_NAME/\//%2f}/$VERSION"; then
               ok=true
               break
             fi
-            sleep 5
+            sleep 10
           done
           if [ "$ok" != "true" ]; then
-            echo "::error::$PACKAGE_NAME@$VERSION is not on the registry"
+            echo "::error::$PACKAGE_NAME@$VERSION is not on the registry yet"
+            echo "::error::the publish may still be propagating — check https://www.npmjs.com/package/$PACKAGE_NAME?activeTab=versions"
             exit 1
           fi
           echo "  OK  $PACKAGE_NAME@$VERSION"
