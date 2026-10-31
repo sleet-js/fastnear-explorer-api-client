@@ -172,6 +172,54 @@ const blocks = await api_blocks({
 
 ---
 
+## releasing
+
+there is a release workflow in `.github/workflows/release.yml`. it is
+manual — trigger it from the Actions tab.
+
+it bumps the version, commits, tags, builds and publishes to npm with
+trusted publishing (OIDC). there is no npm token in the repo.
+
+the git tag and the npm version are always the same string:
+
+```
+tag v0.1.1  <->  npm @sleet-js/fastnear-explorer-api-client@0.1.1
+```
+
+the workflow takes a `bump` of `patch` only, or an exact `version`.
+the package is pre-1.0, so a breaking change ships as a `patch` — a
+`major` bump would take it to 1.0.0 and imply a stability promise it
+does not make.
+
+### the npm side, once
+
+```
+Package Settings -> Trusted Publisher -> GitHub Actions
+  Organization or user : sleet-js
+  Repository           : fastnear-explorer-api-client
+  Workflow filename    : release.yml
+  Allowed actions      : npm publish
+```
+
+the config must complete its first publish within 2 days or it
+expires.
+
+### the scripts
+
+you can run the version steps by hand:
+
+```sh
+bun run release:version patch   # what would the next version be?
+bun run version:dry-run         # preview the bump
+bun run version:sync 0.1.1      # write an exact version
+```
+
+`release:version` looks at BOTH the local package.json and the
+versions already on npm, and takes the higher one. that way a version
+published but never committed cannot be published twice.
+
+---
+
 ## the call log
 
 every call prints a framed block — the same format the middleman
