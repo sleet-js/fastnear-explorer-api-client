@@ -48,6 +48,22 @@
 //
 // every hook is optional.
 //
+// A PLUGIN THAT REPORTS ITS OWN ACTIONS
+//
+// `parse_actions` is for a protocol whose payload does not fit the
+// generic action shape. FastFS is the one built-in that uses it: the
+// payload is a borsh blob, and the details of a file — the path, the
+// mime, the bytes, the url — do not fit the flat fields.
+//
+//   parse_actions(context)  -> extra parsed actions
+//
+// the actions land in `result.actions` beside the generic ones, each
+// with its own `type`:
+//
+//   const upload = result.actions.find((a) => a.type === "Fastfs");
+//   upload.fastfs;      // the file
+//   upload.fastfs_url;  // where it is served from
+//
 // PRIORITY
 //
 // lower runs first. the built-ins use:
@@ -57,6 +73,7 @@
 //   200  nep141
 //   300  nep245
 //   400  nep171
+//   500  fastfs uploads
 //
 // a consumer plugin with no priority gets 1000, so it runs after the
 // built-ins. pass a lower number to run it earlier.

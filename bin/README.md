@@ -239,6 +239,20 @@ bun bin/parse_encodings.ts
 bun bin/parse_encodings.ts --rounds 5000
 ```
 
+### parse_fastfs
+
+the self-check for the FastFS decoder. it decodes the REAL mainnet
+FastFS transaction and checks the exact numbers it must give, then
+checks the partial, delete, garbage, truncated and unknown-variant
+payloads, the hex format, the url and the uri, and the limits.
+
+```sh
+bun bin/parse_fastfs.ts
+```
+
+it needs the network for the real transaction — the rest runs
+offline. it exits non-zero if anything fails.
+
 ---
 
 ## bin helpers

@@ -488,6 +488,72 @@ const decoded = decode_args(action.args);
 a malformed or empty argument gives an empty result rather than
 throwing.
 
+### fastfs
+
+a FastFS upload is a function call to `__fastdata_fastfs` whose
+arguments are raw borsh bytes, not json. the parser decodes them and
+reports the upload as an action of its own:
+
+```typescript
+const upload = parsed.actions.find((action) => action.type === "Fastfs");
+
+if (upload !== undefined) {
+  console.log(upload.fastfs?.relative_path);  // "fastnear.png"
+  console.log(upload.fastfs?.mime_type);      // "image/png"
+  console.log(upload.fastfs?.size);           // 121477
+  console.log(upload.fastfs?.content);        // the bytes
+  console.log(upload.fastfs_url);             // where it is served from
+}
+```
+
+`size` and `total_size` are different numbers for a partial upload —
+`size` is the chunk's size, `total_size` is the whole file's. a reader
+must not confuse them.
+
+`is_delete` is true for a delete, which is a simple upload with no
+content. a delete carries no mime type, so its `mime_type` is the empty
+string.
+
+the decoder never throws. a payload that is not FastFS borsh, or that
+is truncated, gives `null`:
+
+```typescript
+import {
+  fastfs_decode_fun,
+  fastfs_file_url_fun,
+  fastfs_file_uri_fun,
+  fastfs_bytes_to_hex_fun,
+  fastfs_validate_fun,
+  fastfs_can_display_fun,
+} from "@sleet-js/fastnear-explorer-api-client";
+
+const info = fastfs_decode_fun(bytes);
+// null for anything that is not a FastFS payload
+
+fastfs_file_url_fun("mob.near", "fastfs.near", "fastnear.png");
+// "https://mob.near.fastfs.io/fastfs.near/fastnear.png"
+
+fastfs_file_uri_fun("mob.near", "fastfs.near", "fastnear.png");
+// "fastfs://mob.near/fastfs.near/fastnear.png"
+
+// what a ui can show for this mime type.
+fastfs_can_display_fun("image/png");  // "text" | "image" | "video" | null
+
+// the indexer's limits. an empty list means the payload is fine.
+fastfs_validate_fun(info);
+```
+
+the hex has a line break every 16 bytes, so a reader can count the
+offset:
+
+```typescript
+console.log(fastfs_bytes_to_hex_fun(new Uint8Array([0, 9, 0, 0, 0])));
+// "00 09 00 00 00"
+```
+
+`FastFS_DECODER_CONTRACT.md` in the repo root is the contract this
+decoder and the rex engine's frontend both implement.
+
 ### the transfers
 
 ```typescript

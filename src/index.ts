@@ -105,6 +105,34 @@ export { plugin_nep141_transfer } from "./parse/plugins/PLUGIN_NEP141_TRANSFER";
 export { plugin_nep245_transfer } from "./parse/plugins/PLUGIN_NEP245_TRANSFER";
 export { plugin_nep171_nft_transfer } from "./parse/plugins/PLUGIN_NEP171_NFT_TRANSFER";
 export { plugin_delete_account_transfer } from "./parse/plugins/PLUGIN_DELETE_ACCOUNT_TRANSFER";
+export { plugin_fastfs } from "./parse/plugins/PLUGIN_FASTFS";
+
+// --- fastfs -------------------------------------------------------
+// the FastFS decoder. see FastFS_DECODER_CONTRACT.md — the same
+// contract the rex engine's frontend implements.
+export { fastfs_decode_fun } from "./parse/fastfs/fastfs_decode";
+export {
+  fastfs_file_url_fun,
+  fastfs_file_uri_fun,
+} from "./parse/fastfs/fastfs_file_url";
+export { fastfs_bytes_to_hex_fun } from "./parse/fastfs/fastfs_bytes_to_hex";
+export {
+  fastfs_validate_fun,
+  FASTFS_MAX_PATH_LENGTH,
+  FASTFS_MAX_MIME_LENGTH,
+  FASTFS_MAX_CHUNK_SIZE,
+  FASTFS_MAX_FILE_SIZE,
+  FASTFS_MIN_FILE_SIZE,
+  FASTFS_MAX_NONCE,
+  FASTFS_MIN_NONCE,
+  FASTFS_OFFSET_STEP,
+  FASTFS_MAX_OFFSET,
+} from "./parse/fastfs/fastfs_limits";
+export {
+  fastfs_is_call_fun,
+  fastfs_can_display_fun,
+  FASTFS_METHOD_NAME,
+} from "./parse/fastfs/fastfs_is";
 
 // --- formatting ---------------------------------------------------
 export { format_near } from "./parse/format_near";
@@ -119,6 +147,7 @@ export { decode_base58 } from "./parse/decode_base58";
 export { decode_bytes } from "./parse/decode_bytes";
 export { encode_base64 } from "./parse/encode_base64";
 export { decode_base64_bytes } from "./parse/decode_base64";
+export { decode_base64_bytes_raw } from "./parse/decode_base64_bytes_raw";
 export { base58_from_base64 } from "./parse/base58_from_base64";
 
 // --- types --------------------------------------------------------
@@ -177,6 +206,8 @@ export type { DECODED_ARGS } from "./types/shared/DECODED_ARGS";
 export type { ARGS_VIEW_MODE } from "./types/shared/ARGS_VIEW_MODE";
 export type { DELEGATE_CONTEXT } from "./types/shared/DELEGATE_CONTEXT";
 export type { COLLECTED_EVENT } from "./types/shared/COLLECTED_EVENT";
+export type { FASTFS_FILE_INFO } from "./types/shared/FASTFS_FILE_INFO";
+export type { FASTFS_DISPLAY_KIND } from "./types/shared/FASTFS_DISPLAY_KIND";
 export type { API_RPC_RESPONSE } from "./types/v1/API_RPC_RESPONSE";
 export type { API_RPC_PARAMS } from "./types/v1/API_RPC_PARAMS";
 export type { API_RPC_CALL_PARAMS } from "./types/v1/API_RPC_CALL_PARAMS";

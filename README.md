@@ -320,6 +320,71 @@ see `src/parse/plugins/README.md` for the whole story.
 
 ---
 
+## fastfs
+
+a FastFS upload is a function call to `__fastdata_fastfs` whose arguments
+are raw borsh bytes, not json. the parser decodes them and reports the
+upload as an action of its own.
+
+```ts
+import { parse_transaction } from "@sleet-js/fastnear-explorer-api-client";
+
+const parsed = parse_transaction(tx);
+const upload = parsed.actions.find((action) => action.type === "Fastfs");
+
+upload?.fastfs;      // the file — path, mime, bytes, sizes
+upload?.fastfs_url;  // where it is served from
+```
+
+| field | what it is |
+|---|---|
+| `kind` | `"simple"` or `"partial"` |
+| `relative_path` | the path inside the namespace |
+| `mime_type` | the mime type. empty for a delete |
+| `content` | the bytes. empty for a delete |
+| `size` | the chunk's size for a partial one, the file's for a simple one |
+| `total_size` | the whole file's size. 0 for a simple one |
+| `offset` | where the chunk starts. 0 for a simple one |
+| `nonce` | the nonce every chunk of one upload shares. 0 for a simple one |
+| `is_delete` | true when the payload is a delete |
+
+`size` and `total_size` are different numbers for a partial upload, and
+a reader must not confuse them.
+
+the decoder is also exported on its own, for a payload that has not
+come from a transaction yet.
+
+```ts
+import {
+  fastfs_decode_fun,
+  fastfs_file_url_fun,
+  fastfs_file_uri_fun,
+  fastfs_bytes_to_hex_fun,
+  fastfs_validate_fun,
+  fastfs_can_display_fun,
+} from "@sleet-js/fastnear-explorer-api-client";
+
+const info = fastfs_decode_fun(bytes);   // null for anything that is not FastFS
+
+fastfs_file_url_fun("mob.near", "fastfs.near", "fastnear.png");
+// "https://mob.near.fastfs.io/fastfs.near/fastnear.png"
+
+fastfs_file_uri_fun("mob.near", "fastfs.near", "fastnear.png");
+// "fastfs://mob.near/fastfs.near/fastnear.png"
+
+fastfs_can_display_fun("image/png");  // "text" | "image" | "video" | null
+fastfs_validate_fun(info);            // the problems, [] when it is fine
+```
+
+the decoder NEVER THROWS. a payload that is not FastFS borsh, or that
+is truncated, gives `null` — the caller renders the bytes as hex
+instead.
+
+`FastFS_DECODER_CONTRACT.md` in the repo root is the contract this
+decoder and the rex engine's frontend both implement.
+
+---
+
 ## formatting
 
 ```ts
@@ -349,6 +414,7 @@ bins in `bin/` — see `bin/README.md`.
 
 ```sh
 bun bin/parse_encodings.ts
+bun bin/parse_fastfs.ts
 bun bin/parse_verify.ts
 bun bin/parse_transaction.ts <hash>
 bun bin/parse_row.ts <hash>
