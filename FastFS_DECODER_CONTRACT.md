@@ -92,6 +92,29 @@ function fastfs_file_uri_fun(
 ): string;
 ```
 
+## where the decoded upload lands
+
+the decoded upload is a detail ON the call, not a second action.
+
+```ts
+interface PARSED_ACTION {
+  type: string;        // "FunctionCall" — the type does NOT change
+  fastfs?: FASTFS_FILE_INFO;
+  fastfs_url?: string;
+  // ... the rest of the generic fields
+}
+```
+
+a transaction with one FastFS call parses to **one** action, of type
+`FunctionCall`, carrying `fastfs` and `fastfs_url`. the action count is
+what the chain recorded, and a reader who checks it is not misled.
+
+a consumer finds the upload like this:
+
+```ts
+const upload = parsed.actions.find((action) => action.fastfs !== undefined);
+```
+
 ## the rules the decoder holds to
 
 - **the receiver is ANY account.** `fastfs.near` is the convention and the

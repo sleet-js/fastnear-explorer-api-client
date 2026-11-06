@@ -7,16 +7,21 @@
 // and against hand-written payloads:
 //
 //   1. the real transaction decodes to the exact numbers it must
-//   2. a partial payload decodes, and its `size` is the CHUNK's
+//   2. the plugin ENRICHES the one action — the count stays at one,
+//      and the action's type stays `FunctionCall`
+//   3. an ordinary call keeps its actions and gains no FastFS detail
+//   4. a partial payload decodes, and its `size` is the CHUNK's
 //      size while its `total_size` is the whole file's
-//   3. a delete — a simple upload with no content — decodes as one
-//   4. garbage, a truncated payload and an unknown variant all give
+//   5. a delete — a simple upload with no content — decodes as one
+//   6. garbage, a truncated payload and an unknown variant all give
 //      null
-//   5. the hex has the byte separators and the line break every 16
+//   7. the hex has the byte separators and the line break every 16
 //      bytes
-//   6. the url and the uri are the ones the contract says
-//   7. the limits: a long path is a problem, a delete with no mime
+//   8. the url and the uri are the ones the contract says
+//   9. the limits: a long path is a problem, a delete with no mime
 //      is NOT
+//  10. the method name and the display kind
+//  11. the decoder never throws
 //
 // WHY THE REAL TRANSACTION MATTERS.
 //
@@ -239,12 +244,39 @@ console.log("the real mainnet transaction...");
     receipts: [],
   } as never);
 
-  const fastfs_action = parsed.actions.find((action) => action.type === "Fastfs");
-  check(fastfs_action !== undefined, "the plugin reported no Fastfs action");
+  // --- WHY THE COUNT IS CHECKED: the plugin ENRICHES the action that
+  // is already there. an earlier version reported a second action, so
+  // one call looked like two actions, and the count a reader checks
+  // was a lie. one FastFS call must be one action.
+  check(
+    parsed.actions.length === 1,
+    `the transaction has ${parsed.actions.length} action(s), expected 1`,
+  );
+
+  const fastfs_action = parsed.actions.find(
+    (action) => action.fastfs !== undefined,
+  );
+  check(fastfs_action !== undefined, "the plugin enriched no action");
+  // the type stays `FunctionCall` — that is what the call was.
+  check(
+    fastfs_action?.type === "FunctionCall",
+    `the action's type is "${fastfs_action?.type}", expected "FunctionCall"`,
+  );
+  check(fastfs_action?.method_name === "__fastdata_fastfs", "the method name is wrong");
   check(fastfs_action?.fastfs?.size === REAL_SIZE, "the plugin's size is wrong");
+  check(
+    fastfs_action?.fastfs?.relative_path === REAL_PATH,
+    `the plugin's path is "${fastfs_action?.fastfs?.relative_path}"`,
+  );
   check(
     fastfs_action?.fastfs_url === "https://mob.near.fastfs.io/fastfs.near/fastnear.png",
     `the plugin's url is "${fastfs_action?.fastfs_url}"`,
+  );
+
+  // no action of a type of its own — the plugin does not add one.
+  check(
+    !parsed.actions.some((action) => action.type === "Fastfs"),
+    "the plugin added an action of its own",
   );
 
   console.log(
@@ -252,7 +284,62 @@ console.log("the real mainnet transaction...");
   );
 }
 
-// --- 2. a partial payload -----------------------------------------
+// --- 2. an ordinary call -------------------------------------------
+console.log("an ordinary call...");
+
+{
+  // --- WHY AN ORDINARY CALL IS CHECKED: the plugin touches every
+  // parsed action, so it could add a detail to a call that is not a
+  // FastFS upload, or change the count of an ordinary transaction.
+  // neither may happen.
+  const parsed = parse_transaction({
+    transaction: {
+      hash: "ordinary",
+      signer_id: "alice.near",
+      receiver_id: "contract.near",
+      public_key: "ed25519:11111111111111111111111111111111",
+      nonce: 1,
+      actions: [
+        {
+          FunctionCall: {
+            method_name: "set_greeting",
+            args: Buffer.from('{"greeting":"hello"}', "utf-8").toString("base64"),
+            gas: 30000000000000,
+            deposit: "0",
+          },
+        },
+        { Transfer: { deposit: "1000000000000000000000000" } },
+      ],
+    },
+    execution_outcome: {
+      block_height: 1,
+      block_timestamp: 1,
+      outcome: { logs: [], receipt_ids: [], gas_burnt: 0, tokens_burnt: "0", executor_id: "alice.near", status: { SuccessValue: "" } },
+    },
+    receipts: [],
+  } as never);
+
+  check(
+    parsed.actions.length === 2,
+    `the transaction has ${parsed.actions.length} action(s), expected 2`,
+  );
+  check(
+    !parsed.actions.some((action) => action.fastfs !== undefined),
+    "an ordinary call was given FastFS details",
+  );
+  check(
+    !parsed.actions.some((action) => action.fastfs_url !== undefined),
+    "an ordinary call was given a FastFS url",
+  );
+  check(
+    parsed.actions[0]?.type === "FunctionCall",
+    `the first action's type is "${parsed.actions[0]?.type}"`,
+  );
+
+  console.log("  ok: an ordinary call keeps its two actions and gains nothing");
+}
+
+// --- 3. a partial payload -----------------------------------------
 console.log("a partial payload...");
 
 {
@@ -281,7 +368,7 @@ console.log("a partial payload...");
   console.log("  ok: the chunk's size and the whole file's size are different numbers");
 }
 
-// --- 3. a delete --------------------------------------------------
+// --- 4. a delete --------------------------------------------------
 console.log("a delete...");
 
 {
@@ -302,7 +389,7 @@ console.log("a delete...");
   console.log("  ok: a delete is a simple with no content");
 }
 
-// --- 4. the null cases --------------------------------------------
+// --- 5. the null cases --------------------------------------------
 console.log("garbage, truncated and unknown...");
 
 {
@@ -350,7 +437,7 @@ console.log("garbage, truncated and unknown...");
   console.log("  ok: garbage, truncation and unknown variants all give null");
 }
 
-// --- 5. the hex format --------------------------------------------
+// --- 6. the hex format --------------------------------------------
 console.log("the hex format...");
 
 {
@@ -389,7 +476,7 @@ console.log("the hex format...");
   console.log("  ok: one space between the bytes, a line break every 16");
 }
 
-// --- 6. the url and the uri ---------------------------------------
+// --- 7. the url and the uri ---------------------------------------
 console.log("the url and the uri...");
 
 {
@@ -413,7 +500,7 @@ console.log("the url and the uri...");
   console.log("  ok: the url and the uri");
 }
 
-// --- 7. the limits ------------------------------------------------
+// --- 8. the limits ------------------------------------------------
 console.log("the limits...");
 
 {
@@ -473,7 +560,7 @@ console.log("the limits...");
   console.log("  ok: the limits are the indexer's");
 }
 
-// --- 8. the small predicates --------------------------------------
+// --- 9. the small predicates --------------------------------------
 console.log("the method name and the display kind...");
 
 {
@@ -493,7 +580,7 @@ console.log("the method name and the display kind...");
   console.log("  ok: the method name and the display kind");
 }
 
-// --- 9. the decoder never throws ----------------------------------
+// --- 10. the decoder never throws ---------------------------------
 console.log("the decoder never throws...");
 
 {

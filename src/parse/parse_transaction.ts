@@ -25,9 +25,18 @@
 //   parse_nft_transfers — report nft transfers
 //   parse_event         — read one event standard
 //   parse_actions       — report extra parsed actions
+//   enrich_actions      — add a detail to the actions already parsed
 //
 // a consumer that wants a transfer the built-ins do not know about
 // writes a plugin and hands it in. the built-ins never change.
+//
+// THE ACTIONS ARE PARSED BEFORE THE PLUGINS RUN.
+//
+// the context carries the parsed actions, so a plugin can ENRICH an
+// action that is already there instead of appending a second one
+// beside it. an appended action makes the transaction look like it
+// did more than it did, and the action count is a fact a reader
+// checks.
 //
 // TO ADD A CUSTOM PARSER:
 //
@@ -61,6 +70,7 @@ import { resolve_total_gas } from "./resolve_total_gas";
 import { create_parser_registry } from "./registry/create_parser_registry";
 import { DEFAULT_PARSER_REGISTRY } from "./registry/DEFAULT_PARSER_REGISTRY";
 import type { CUSTOM_TRANSFER } from "../types/shared/CUSTOM_TRANSFER";
+import type { DELEGATE_CONTEXT } from "../types/shared/DELEGATE_CONTEXT";
 import type { NFT_TRANSFER_INFO } from "../types/shared/NFT_TRANSFER_INFO";
 import type { PARSE_RESULT } from "../types/shared/PARSE_RESULT";
 import type { PARSED_ACTION } from "../types/shared/PARSED_ACTION";
@@ -76,9 +86,14 @@ export function parse_transaction(
   options: PARSER_OPTIONS = {},
 ): PARSE_RESULT {
   const registry = resolve_registry(options);
-  const context = resolve_context(tx);
 
-  const actions: PARSED_ACTION[] = context.actions.map(parse_action);
+  // the actions are parsed FIRST, so the context can carry them and a
+  // plugin can enrich one in place. the list the plugins write on is
+  // the list the result carries, so what a plugin adds is what a
+  // consumer reads.
+  const delegated = resolve_delegate_context(tx.transaction);
+  const actions: PARSED_ACTION[] = delegated.actions.map(parse_action);
+  const context = resolve_context(tx, delegated, actions);
   const events = collect_events(tx);
 
   const transfers: TRANSFER_INFO[] = [];
@@ -88,9 +103,28 @@ export function parse_transaction(
   for (const plugin of registry.parsers) {
     if (plugin.matches !== undefined && !plugin.matches(context)) continue;
 
-    // a plugin may report extra parsed actions of its own.
+    // a plugin may report extra parsed actions of its own. they are
+    // APPENDED, so the action count grows by one per reported action.
     for (const action of as_array<PARSED_ACTION>(plugin.parse_actions?.(context))) {
       actions.push(action);
+    }
+
+    // a plugin may add a detail to the actions that are already
+    // there. it returns nothing — the details go onto the actions in
+    // place, and the count stays what the chain recorded.
+    //
+    // --- WHY IT IS WRAPPED: a plugin that throws in a hook must not
+    // take down the parse of a good transaction. the hook writes on
+    // shared state, so a half-written action is possible — but a
+    // broken plugin is a broken plugin, and the rest of the parse is
+    // worth more than the parse being all-or-nothing.
+    try {
+      plugin.enrich_actions?.(context);
+    } catch (err) {
+      console.error(
+        `[parse_transaction] plugin "${plugin.id}" failed in enrich_actions`,
+        err,
+      );
     }
 
     for (const transfer of as_array<TRANSFER_INFO | CUSTOM_TRANSFER>(
@@ -161,14 +195,25 @@ function resolve_registry(options: PARSER_OPTIONS): PARSER_REGISTRY {
   return create_parser_registry([...DEFAULT_PARSER_REGISTRY.parsers, ...plugins]);
 }
 
-function resolve_context(tx: TRANSACTION_DETAIL): PARSER_CONTEXT {
-  const delegated = resolve_delegate_context(tx.transaction);
+// the context every plugin is handed.
+//
+// --- WHY THE PARSED ACTIONS GO IN HERE: a plugin that knows something
+// about an action that is ALREADY parsed has to be able to say it
+// ABOUT THAT ACTION. the parsed list is here, and it is the very list
+// the result carries, so a plugin that writes on it changes what the
+// consumer reads.
+function resolve_context(
+  tx: TRANSACTION_DETAIL,
+  delegated: DELEGATE_CONTEXT,
+  parsed_actions: PARSED_ACTION[],
+): PARSER_CONTEXT {
   return {
     signer_id: delegated.signer_id,
     receiver_id: delegated.receiver_id,
     relayer_id: delegated.relayer_id,
     is_delegated: delegated.is_delegated,
     actions: delegated.actions,
+    parsed_actions,
     tx,
   };
 }

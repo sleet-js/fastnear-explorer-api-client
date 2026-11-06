@@ -492,12 +492,16 @@ throwing.
 
 a FastFS upload is a function call to `__fastdata_fastfs` whose
 arguments are raw borsh bytes, not json. the parser decodes them and
-reports the upload as an action of its own:
+reports the upload as a detail ON that call.
+
+the call stays a `FunctionCall` and the action count stays what the
+chain recorded — one call, one action:
 
 ```typescript
-const upload = parsed.actions.find((action) => action.type === "Fastfs");
+const upload = parsed.actions.find((action) => action.fastfs !== undefined);
 
 if (upload !== undefined) {
+  console.log(upload.type);                    // "FunctionCall"
   console.log(upload.fastfs?.relative_path);  // "fastnear.png"
   console.log(upload.fastfs?.mime_type);      // "image/png"
   console.log(upload.fastfs?.size);           // 121477
@@ -638,10 +642,29 @@ cannot tell it apart from a built-in one.
 | `parse_transfers(context)` | fungible transfers |
 | `parse_nft_transfers(context)` | nft transfers |
 | `parse_event(event, context, contract_id)` | transfers from one event |
-| `parse_actions(context)` | extra parsed actions |
+| `parse_actions(context)` | extra parsed actions — APPENDED |
+| `enrich_actions(context)` | nothing. the details go onto `context.parsed_actions` in place |
 | `matches(context)` | `false` to skip the plugin |
 
 every hook is optional.
+
+`parse_actions` APPENDS and `enrich_actions` MODIFIES. an appended
+action makes the transaction look like it did more than it did, so a
+plugin that knows something about an action that is already parsed
+enriches it instead.
+
+```typescript
+const my_plugin = {
+  id: "myapp.my-protocol",
+  priority: 500,
+  enrich_actions(context) {
+    for (const action of context.parsed_actions) {
+      if (action.method_name !== "__my_method") continue;
+      action.my_detail = decode_my_payload(action.args);
+    }
+  },
+};
+```
 
 ### priority
 

@@ -10,7 +10,7 @@
 //   nep171 — nfts
 //   plus the delete-account refund sweep
 //   and the FastFS uploads, which are not transfers but are reported
-//   as parsed actions.
+//   as details on the actions they are.
 //
 // a consumer adds their own by passing plugins to parse_transaction,
 // or by building their own registry.

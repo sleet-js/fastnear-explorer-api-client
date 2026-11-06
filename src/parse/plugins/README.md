@@ -44,6 +44,7 @@
 //   parse_nft_transfers(context)      -> nft transfers
 //   parse_event(event, context, id)   -> transfers from one event
 //   parse_actions(context)            -> extra parsed actions
+//   enrich_actions(context)           -> details for the actions already parsed
 //   matches(context)                  -> false to skip the plugin
 //
 // every hook is optional.
@@ -51,18 +52,50 @@
 // A PLUGIN THAT REPORTS ITS OWN ACTIONS
 //
 // `parse_actions` is for a protocol whose payload does not fit the
-// generic action shape. FastFS is the one built-in that uses it: the
-// payload is a borsh blob, and the details of a file — the path, the
-// mime, the bytes, the url — do not fit the flat fields.
+// generic action shape. the actions it returns are APPENDED to the
+// parsed list, so the action count grows by one per reported action.
 //
 //   parse_actions(context)  -> extra parsed actions
 //
 // the actions land in `result.actions` beside the generic ones, each
 // with its own `type`:
 //
-//   const upload = result.actions.find((a) => a.type === "Fastfs");
+//   const extra = result.actions.find((a) => a.type === "Mine");
+//   extra.my_detail;
+//
+// A PLUGIN THAT ENRICHES AN ACTION THAT IS ALREADY THERE
+//
+// when the action is already parsed — a function call, say — a plugin
+// that knows something about it should say it ABOUT THAT ACTION, not
+// add a second one beside it.
+//
+// an appended action makes the transaction look like it did more than
+// it did. the action count is a fact a reader checks, and "2 actions"
+// for one call is a lie.
+//
+// `enrich_actions` is the hook for that. it returns nothing — the
+// details go onto `context.parsed_actions` in place:
+//
+//   enrich_actions(context) {
+//     for (const action of context.parsed_actions) {
+//       if (action.method_name !== "__fastdata_fastfs") continue;
+//       action.my_detail = decode_my_payload(action.args);
+//     }
+//   }
+//
+// `context.parsed_actions` is the very list `result.actions` carries,
+// so what a plugin writes on it is what a consumer reads.
+//
+// FastFS is the one built-in that uses it: the payload is a borsh
+// blob, and the details of a file — the path, the mime, the bytes,
+// the url — do not fit the flat fields.
+//
+//   const upload = result.actions.find((a) => a.fastfs !== undefined);
 //   upload.fastfs;      // the file
 //   upload.fastfs_url;  // where it is served from
+//
+// the type of the action stays `FunctionCall`. the action IS a
+// function call, and the FastFS details are extra facts about it.
 //
 // PRIORITY
 //

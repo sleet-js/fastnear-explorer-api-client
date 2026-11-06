@@ -12,8 +12,14 @@
 //
 // FastFS is the one today: its payload is a borsh blob, and the
 // details of a file do not fit in the generic fields above. so a
-// FastFS action carries `fastfs` and `fastfs_url` beside them. both
-// are optional, so a consumer that ignores them is unaffected.
+// FastFS call — a `FunctionCall` — carries `fastfs` and `fastfs_url`
+// beside them. both are optional, so a consumer that ignores them is
+// unaffected.
+//
+// --- WHY THE TYPE IS NOT CHANGED: the action IS a function call. the
+// details are extra facts about it, not a different kind of action. a
+// consumer that switches on `type` sees exactly what it saw before,
+// and the action count is the count the chain recorded.
 // ========================================
 
 import type { RAW_ACTION } from "../tx/RAW_ACTION";

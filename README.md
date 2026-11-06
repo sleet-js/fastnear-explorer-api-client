@@ -324,14 +324,19 @@ see `src/parse/plugins/README.md` for the whole story.
 
 a FastFS upload is a function call to `__fastdata_fastfs` whose arguments
 are raw borsh bytes, not json. the parser decodes them and reports the
-upload as an action of its own.
+upload as a detail ON that call.
+
+the call stays a `FunctionCall` and the action count stays what the
+chain recorded — one call, one action. the upload's details ride
+alongside.
 
 ```ts
 import { parse_transaction } from "@sleet-js/fastnear-explorer-api-client";
 
 const parsed = parse_transaction(tx);
-const upload = parsed.actions.find((action) => action.type === "Fastfs");
+const upload = parsed.actions.find((action) => action.fastfs !== undefined);
 
+upload?.type;        // "FunctionCall"
 upload?.fastfs;      // the file — path, mime, bytes, sizes
 upload?.fastfs_url;  // where it is served from
 ```
